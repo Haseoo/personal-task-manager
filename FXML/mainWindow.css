@@ -1,16 +1,31 @@
 .menuButton {
-    -fx-background-color: white;
-    -fx-width: 50%;
+    -fx-background-color: transparent;
 }
+
+.addButton {
+    -fx-background-color: rgba(240, 242, 255, 0.8);
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+    -fx-border-color: rgba(240, 242, 255, 0.8);
+}
+
 .menuButton:hover, .addButton:hover {
-    -fx-background-color: rgb(230, 236, 255);
+    -fx-background-color: rgba(230, 236, 255, 0.8);
+}
+
+.addButton:hover {
+    -fx-border-color: rgba(196, 212, 255, 0.8);
 }
 
 .menuButton:pressed, .addButton:pressed {
-    -fx-background-color: rgb(196, 212, 255);
+    -fx-background-color: rgba(196, 212, 255, 0.8);
 }
 
 .mainWindow {
+    -fx-background-color: white;
+}
+
+.menu {
     -fx-background-color: white;
 }
 
@@ -22,16 +37,21 @@
     -fx-font-weight: bold;
 }
 
-.addButton {
-    -fx-background-color: rgb(240, 242, 255);
-}
-
 .menuButtonTT {
     -fx-background-color: rgba(255,255,255,0.75);
     -fx-text-fill: rgb(89, 107, 187);
     -fx-font: normal bold 12 Langdon;
 }
 
-.scroll > .viewport {
-    -fx-background-color: white;
+.scroll {
+    -fx-border-style: solid;
+    -fx-border-color: lightgray;
+}
+
+.scroll > .viewport, .scroll {
+    -fx-background-color: transparent;
+}
+
+.mainHBox {
+    -fx-background-color: transparent;
 }

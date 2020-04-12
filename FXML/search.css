@@ -1,0 +1,8 @@
+.btn {
+    -fx-pref-width: 100;
+    -fx-font-weight: bold;
+}
+
+.input {
+    -fx-pref-width: 468;
+}
