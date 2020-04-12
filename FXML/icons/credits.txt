@@ -1,0 +1,11 @@
+newFile- https://www.flaticon.com/free-icon/new_650122
+openFile- https://www.flaticon.com/free-icon/open-archive_73581
+save- https://www.flaticon.com/free-icon/floppy-disk_443087
+export- https://www.flaticon.com/free-icon/export_249105
+calendar- https://www.flaticon.com/free-icon/calendar_684905
+search- https://www.flaticon.com/free-icon/tag_1946357
+help- https://www.flaticon.com/free-icon/info_1810852
+add- https://www.flaticon.com/free-icon/add_163268
+edit- https://www.flaticon.com/free-icon/pen_1250925
+remove- https://www.flaticon.com/free-icon/cancel_44315
+forward- https://www.flaticon.com/free-icon/fast-forward_2413632

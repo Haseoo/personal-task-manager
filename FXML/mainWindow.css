@@ -1,0 +1,37 @@
+.menuButton {
+    -fx-background-color: white;
+    -fx-width: 50%;
+}
+.menuButton:hover, .addButton:hover {
+    -fx-background-color: rgb(230, 236, 255);
+}
+
+.menuButton:pressed, .addButton:pressed {
+    -fx-background-color: rgb(196, 212, 255);
+}
+
+.mainWindow {
+    -fx-background-color: white;
+}
+
+.title {
+    -fx-font-size: 18px;
+}
+
+.fileName {
+    -fx-font-weight: bold;
+}
+
+.addButton {
+    -fx-background-color: rgb(240, 242, 255);
+}
+
+.menuButtonTT {
+    -fx-background-color: rgba(255,255,255,0.75);
+    -fx-text-fill: rgb(89, 107, 187);
+    -fx-font: normal bold 12 Langdon;
+}
+
+.scroll > .viewport {
+    -fx-background-color: white;
+}

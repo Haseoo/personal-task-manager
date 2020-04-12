@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" styleClass="slot" stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox alignment="CENTER_LEFT" maxHeight="30.0" prefHeight="30.0" styleClass="slotHeader">
+         <children>
+            <GridPane maxHeight="30.0" prefHeight="30.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="90.0" />
+                <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" percentWidth="22.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="slotLabel" styleClass="slotLabel">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="20.0" GridPane.columnIndex="1">
+                     <children>
+                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onSlotEdit" prefHeight="30.0" prefWidth="30.0" styleClass="slotBtn">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/edit.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip styleClass="buttonTT" text="Edit slot" />
+                           </tooltip>
+                        </Button>
+                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onSlotDelete" prefHeight="30.0" prefWidth="30.0" styleClass="slotBtn">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/remove.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <tooltip>
+                              <Tooltip styleClass="buttonTT" text="Remove slot" />
+                           </tooltip>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </children>
+      </HBox>
+      <Separator prefWidth="200.0" />
+      <ScrollPane fx:id="slotScrollPane">
+         <content>
+            <VBox fx:id="slotVBox" alignment="TOP_CENTER" spacing="5.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</VBox>
