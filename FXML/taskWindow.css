@@ -1,0 +1,31 @@
+.input {
+    -fx-min-width: 35em;
+}
+
+.btn {
+    -fx-min-width: 10em;
+}
+
+.addButton, .rmButton {
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-color: transparent;
+    -fx-border-radius: 4px;
+}
+
+.addButton:hover, .rmButton:hover, .rmButton:focused {
+    -fx-border-color: black;
+}
+
+.h1 {
+    -fx-font-size: 16px;
+}
+
+.subTask {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+}
+
+.check-box > .box > .mark {
+    -fx-padding: 7px;
+}
