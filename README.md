@@ -1,2 +1,2 @@
 # personal-task-manager
-Personal task manager written in C# using WinForms
+Personal task manager written in Java using JavaFx
