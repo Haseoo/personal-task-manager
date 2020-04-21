@@ -3,8 +3,6 @@ package com.github.haseoo.taskmanager.controllers;
 import com.github.haseoo.taskmanager.controllers.views.OpenWindowTableRecord;
 import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -13,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static com.github.haseoo.taskmanager.utilities.Utilities.deleteConfirmationDialog;
 
 @RequiredArgsConstructor
 public class OpenTaskWindowController {
@@ -58,17 +58,10 @@ public class OpenTaskWindowController {
 
     @FXML
     void onRemove() {
-        OpenWindowTableRecord selected = tasksLists.getSelectionModel().getSelectedItem();
+        var selected = tasksLists.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Conform deleting");
-            alert.setHeaderText(String.format("Are you sure to delete %s?", selected.getTasksListName()));
-            alert.setContentText("This operation is irreversible!");
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.OK) {
-                    tasksLists.getItems().remove(selected);
-                }
-            });
+            deleteConfirmationDialog(String.format("Are you sure to delete %s?", selected.getTasksListName()),
+                    () -> tasksLists.getItems().remove(selected));
         }
     }
 }

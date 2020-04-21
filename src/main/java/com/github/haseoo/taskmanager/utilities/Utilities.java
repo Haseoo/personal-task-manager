@@ -3,6 +3,9 @@ package com.github.haseoo.taskmanager.utilities;
 import com.github.haseoo.taskmanager.FXMain;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextInputDialog;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.AccessLevel;
@@ -10,6 +13,7 @@ import lombok.NoArgsConstructor;
 
 import java.net.URL;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Utilities {
@@ -37,5 +41,28 @@ public class Utilities {
         dialog.setScene(scene);
         dialog.showAndWait();
         return dialog;
+    }
+
+    public static void textInputDialog(String value, String title, String header, Consumer<String> action) {
+        TextInputDialog dialog = new TextInputDialog(value);
+        dialog.setTitle(title);
+        dialog.setHeaderText(header);
+        dialog.showAndWait().ifPresent(action);
+    }
+
+    public static void confirmationDialog(String header, String content, Runnable action) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Conform operation");
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                action.run();
+            }
+        });
+    }
+
+    public static void deleteConfirmationDialog(String header, Runnable action) {
+        confirmationDialog(header, "This operation is irreversible!", action);
     }
 }

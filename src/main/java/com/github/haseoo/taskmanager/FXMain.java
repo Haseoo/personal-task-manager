@@ -20,7 +20,7 @@ public class FXMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader mainWindow = new FXMLLoader(getResourceURL("FXML/mainWindow.fxml"));
-        mainWindow.setController(new MainWindowController(this, new TaskListView()));
+        mainWindow.setController(new MainWindowController(this, TaskListView.DEFAULT_VALUE));
         Parent root = mainWindow.load();
 
         Scene scene = new Scene(root);

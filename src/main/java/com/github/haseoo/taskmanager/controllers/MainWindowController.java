@@ -6,18 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
-import static com.github.haseoo.taskmanager.utilities.Utilities.prepareDialog;
+import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 
 public class MainWindowController {
     private final Application application;
@@ -39,15 +35,9 @@ public class MainWindowController {
 
     @FXML
     void onNew() {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Conform operation");
-        alert.setHeaderText("Are you sure to create new list?");
-        alert.setContentText("All unsaved work will be lost");
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                //TODO
-            }
+        confirmationDialog("Are you sure to create new list?", "All unsaved work will be lost", () -> {
         });
+        //TODO Add action
     }
 
     @FXML
@@ -89,7 +79,15 @@ public class MainWindowController {
     }
 
     @FXML
-    void onTag() {
+    void onTag() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/tagWindow.fxml"));
+        loader.setController(new TagWindowController(new AtomicReference<>(taskListView)));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Tag view");
+        stage.show();
 
     }
 
@@ -105,9 +103,9 @@ public class MainWindowController {
 
     @FXML
     void onTitleEdit() {
-        TextInputDialog dialog = new TextInputDialog(taskListTitle.getText());
-        dialog.setTitle("Edit task list name");
-        dialog.setHeaderText("Enter new name");
-        dialog.showAndWait().ifPresent(name -> taskListView.getTitle().setValue(name));
+        textInputDialog(taskListTitle.getText(),
+                "Edit task list name",
+                "Enter new name",
+                name -> taskListView.getTitle().setValue(name));
     }
 }

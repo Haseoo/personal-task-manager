@@ -38,7 +38,7 @@
 }
 
 .menuButtonTT {
-    -fx-background-color: rgba(255,255,255,0.75);
+    -fx-background-color: rgba(255, 255, 255, 0.75);
     -fx-text-fill: rgb(89, 107, 187);
     -fx-font: normal bold 12 Langdon;
 }
@@ -54,4 +54,12 @@
 
 .mainHBox {
     -fx-background-color: transparent;
+}
+
+.editTitleBtn {
+    -fx-background-color: transparent;
+}
+
+.editTitleBtn:hover {
+    -fx-background-color: rgba(230, 236, 255, 0.8);
 }
