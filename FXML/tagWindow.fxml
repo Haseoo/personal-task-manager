@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" stylesheets="@dialog.css" vgap="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" stylesheets="@dialog.css" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+    <RowConstraints valignment="CENTER" vgrow="NEVER" />
   </rowConstraints>
    <children>
       <TableView fx:id="tagTable" prefHeight="300.0" prefWidth="400.0">
@@ -26,17 +26,19 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane GridPane.rowIndex="1">
+      <GridPane hgap="5.0" GridPane.rowIndex="1">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="50.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="33.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="34.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" percentWidth="33.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" styleClass="btnLarge" text="Add" />
-            <Button mnemonicParsing="false" styleClass="btnLarge" text="Remove" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" styleClass="btnLarge" text="Remove" GridPane.columnIndex="2" />
+            <Button fx:id="onTagEdit" mnemonicParsing="false" styleClass="btnLarge" text="Edit" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

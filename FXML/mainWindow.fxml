@@ -145,6 +145,21 @@
                         <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onTitleEdit" prefHeight="30.0" prefWidth="30.0" styleClass="addButton">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <tooltip>
+                        <Tooltip styleClass="menuButtonTT" text="Edit tasks list title" />
+                     </tooltip>
+                  </Button>
                   <Label fx:id="taskListTitle" styleClass="title, fileName" text="untitled">
                      <padding>
                         <Insets left="5.0" />
