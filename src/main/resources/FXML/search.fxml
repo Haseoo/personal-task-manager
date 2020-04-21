@@ -62,9 +62,9 @@
                                 <String fx:value="All tasks"/>
                             </value>
                         </ComboBox>
-                        <DatePicker fx:id="fromDateInput" showWeekNumbers="true" styleClass="input"
+                        <DatePicker fx:id="fromDateInput" editable="false" showWeekNumbers="true" styleClass="input"
                                     GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                        <DatePicker fx:id="toDateInput" showWeekNumbers="true" styleClass="input"
+                        <DatePicker fx:id="toDateInput" editable="false" showWeekNumbers="true" styleClass="input"
                                     GridPane.columnIndex="1" GridPane.rowIndex="3"/>
                         <TextField fx:id="taskNameInput" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
                         <GridPane GridPane.columnIndex="1" GridPane.rowIndex="5">

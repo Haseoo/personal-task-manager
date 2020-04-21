@@ -5,7 +5,6 @@ import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -63,31 +62,23 @@ public class MainWindowController {
 
     @FXML
     void onCalendar() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/calendar.fxml"));
-        loader.setController(new CalendarViewController(new AtomicReference<>(taskListView)));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Calendar view");
-        stage.show();
+        prepareWindow("FXML/calendar.fxml",
+                "Calendar view",
+                new CalendarViewController(new AtomicReference<>(taskListView)));
     }
 
     @FXML
-    void onSearch() {
-
+    void onSearch() throws IOException {
+        prepareWindow("FXML/search.fxml",
+                "Search view",
+                new SearchWindowController(new AtomicReference<>(taskListView)));
     }
 
     @FXML
     void onTag() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/tagWindow.fxml"));
-        loader.setController(new TagWindowController(new AtomicReference<>(taskListView)));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle("Tag view");
-        stage.show();
+        prepareWindow("FXML/tagWindow.fxml",
+                "Tag view",
+                new TagWindowController(new AtomicReference<>(taskListView)));
 
     }
 

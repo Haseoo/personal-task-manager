@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import java.lang.String?>
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
       spacing="5.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <children>
@@ -13,13 +15,25 @@
             </font>
         </Label>
         <DatePicker fx:id="dateInput" editable="false" VBox.vgrow="NEVER"/>
+        <ComboBox fx:id="type" prefWidth="177.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Begin date and end date"/>
+                    <String fx:value="Begin date"/>
+                    <String fx:value="End date"/>
+                </FXCollections>
+            </items>
+            <value>
+                <String fx:value="Begin date and end date"/>
+            </value>
+        </ComboBox>
         <TableView VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn prefWidth="75.0" text="Name"/>
                 <TableColumn prefWidth="75.0" text="From date"/>
                 <TableColumn prefWidth="75.0" text="To date"/>
                 <TableColumn prefWidth="75.0" text="Task tag"/>
-                <TableColumn prefWidth="75.0" text="Completness"/>
+                <TableColumn prefWidth="75.0" text="Completeness"/>
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

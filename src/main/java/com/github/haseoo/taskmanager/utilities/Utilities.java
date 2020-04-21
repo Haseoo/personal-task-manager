@@ -1,6 +1,8 @@
 package com.github.haseoo.taskmanager.utilities;
 
 import com.github.haseoo.taskmanager.FXMain;
+import com.github.haseoo.taskmanager.controllers.CalendarViewController;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -11,8 +13,10 @@ import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -41,6 +45,18 @@ public class Utilities {
         dialog.setScene(scene);
         dialog.showAndWait();
         return dialog;
+    }
+
+    public static Stage prepareWindow(String relPath, String windowTitle, Object controller) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getResourceURL(relPath));
+        loader.setController(controller);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle(windowTitle);
+        stage.show();
+        return stage;
     }
 
     public static void textInputDialog(String value, String title, String header, Consumer<String> action) {
