@@ -1,7 +1,6 @@
 package com.github.haseoo.taskmanager.utilities;
 
 import com.github.haseoo.taskmanager.FXMain;
-import com.github.haseoo.taskmanager.controllers.CalendarViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,7 +15,6 @@ import lombok.NoArgsConstructor;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
