@@ -1,0 +1,15 @@
+.idea/
+.settings/
+.vscode/
+.gradle/
+.gradle/4.10
+gradle/
+bin/
+out/
+build/
+lib/
+gradle/
+.classpath
+gradlew
+gradlew.bat
+.project

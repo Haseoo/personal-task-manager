@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'jacoco'
+    id "org.sonarqube" version "2.7"
+}
+
+group 'com.github.haseoo'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+jacoco {
+    toolVersion = "0.8.2"
+}
+
+javafx {
+    version = "11.0.1"
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs= ['src/main/resources']
+            includes = ['FXML/*.fxml', 'FXML/icons/*.png', 'FXML/*.css']
+        }
+    }
+    test {
+        resources {
+            resources.srcDirs= ['src/test/resources']
+            includes = ['*.*']
+        }
+    }
+}
+
+def currentOS = org.gradle.internal.os.OperatingSystem.current()
+def platform
+if (currentOS.isWindows()) {
+    platform = 'win'
+} else if (currentOS.isLinux()) {
+    platform = 'linux'
+} else if (currentOS.isMacOsX()) {
+    platform = 'mac'
+}
+
+dependencies {
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.0.1'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '2.1.0'
+    testCompile "org.assertj:assertj-core:3.11.1"
+
+    compile "org.openjfx:javafx-base:11:${platform}"
+    compile "org.openjfx:javafx-graphics:11:${platform}"
+    compile "org.openjfx:javafx-controls:11:${platform}"
+    compile "org.openjfx:javafx-fxml:11:${platform}"
+}
+
+test {
+    useJUnitPlatform()
+}
+
+mainClassName = 'com.github.haseoo.taskmanager.Main'
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    doFirst {
+        from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    }
+    exclude 'META-INF/*.RSA', 'META-INF/*.SF'
+}
+
