@@ -11,44 +11,48 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
-<GridPane styleClass="card" stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane onMouseEntered="#showInfo" onMouseExited="#hideInfo" styleClass="card" stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
       <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="150.0" vgrow="ALWAYS" />
+        <RowConstraints minHeight="60.0" vgrow="ALWAYS" />
     </rowConstraints>
     <children>
-        <GridPane>
+        <GridPane fx:id="rightGrid">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" prefWidth="250.0" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints vgrow="ALWAYS" />
-                <RowConstraints vgrow="NEVER" />
+                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints fillHeight="false" vgrow="NEVER" />
             </rowConstraints>
             <children>
-                <Label id="fieldValue" fx:id="taskLabel" alignment="TOP_CENTER" styleClass="cardTitle" text="Task" textAlignment="CENTER" wrapText="true" />
-                <VBox alignment="CENTER_LEFT" spacing="7.0" GridPane.rowIndex="1">
+                <Label fx:id="taskLabel" alignment="TOP_LEFT" styleClass="cardTitle" text="New task" textOverrun="WORD_ELLIPSIS" wrapText="true">
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin></Label>
+                <VBox fx:id="moreInfo" alignment="CENTER_LEFT" maxHeight="0.0" spacing="2.0" GridPane.rowIndex="1">
                     <children>
                         <HBox spacing="10.0">
                             <children>
-                                <Label id="fieldName" text="From" />
-                                <Label id="fieldValue" fx:id="taskFromDate" />
+                                <Text id="fieldName" text="From" />
+                                <Text id="fieldValue" fx:id="taskFromDate" />
                             </children>
                         </HBox>
                         <HBox spacing="10.0">
                             <children>
-                                <Label id="fieldName" text="To" />
-                                <Label id="fieldValue" fx:id="taskToDate" />
+                                <Text id="fieldName" text="To" />
+                                <Text id="fieldValue" fx:id="taskToDate" />
                             </children>
                         </HBox>
                         <HBox spacing="10.0">
                             <children>
-                                <Label id="fieldName" text="Completness" />
-                                <Label id="fieldValue" fx:id="taskCompletness" />
+                                <Text id="fieldName" text="Completness" />
+                                <Text id="fieldValue" fx:id="taskCompletness" />
                             </children>
                         </HBox>
                         <HBox spacing="10.0">
@@ -66,9 +70,9 @@
         </GridPane>
         <VBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
             <children>
-                <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onTaskDelete" prefHeight="30.0" prefWidth="30.0" styleClass="cardLeftBtn">
+                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onTaskDelete" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/remove.png" />
                             </image>
@@ -78,9 +82,9 @@
                         <Tooltip styleClass="buttonTT" text="Remove task" />
                     </tooltip>
                 </Button>
-                <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onTaskMove" prefHeight="30.0" prefWidth="30.0" styleClass="cardLeftBtn">
+                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onTaskMove" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@icons/forward.png" />
                             </image>

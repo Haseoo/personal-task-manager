@@ -58,7 +58,7 @@ public class MainWindowController {
 
     @FXML
     void onOpen() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/openTaskList.fxml"));
+        var loader = new FXMLLoader(getResourceURL("FXML/openTaskList.fxml"));
         loader.setController(new OpenTaskWindowController(new AtomicReference<>(taskListView)));
         Parent root = loader.load();
         prepareDialog(root, "Open task list").showAndWait();
@@ -114,7 +114,7 @@ public class MainWindowController {
     }
 
     private void loadSlot(SlotController slotController) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/slot.fxml"));
+        var loader = new FXMLLoader(getResourceURL("FXML/slot.fxml"));
         loader.setController(slotController);
         GridPane newLoadedPane = loader.load();
         slotController.setPane(newLoadedPane);

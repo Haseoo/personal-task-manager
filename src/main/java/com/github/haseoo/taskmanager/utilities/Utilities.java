@@ -24,9 +24,9 @@ public class Utilities {
     }
 
     public static String getErrorMessageForDialog(Throwable throwable) {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         stringBuilder.append(throwable.getMessage());
-        Throwable cause = throwable.getCause();
+        var cause = throwable.getCause();
         while (cause != null) {
             stringBuilder.append(System.lineSeparator());
             stringBuilder.append(cause.getMessage());
@@ -45,7 +45,7 @@ public class Utilities {
     }
 
     public static Stage prepareWindow(String relPath, String windowTitle, Object controller) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL(relPath));
+        var loader = new FXMLLoader(getResourceURL(relPath));
         loader.setController(controller);
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -57,14 +57,14 @@ public class Utilities {
     }
 
     public static void textInputDialog(String value, String title, String header, Consumer<String> action) {
-        TextInputDialog dialog = new TextInputDialog(value);
+        var dialog = new TextInputDialog(value);
         dialog.setTitle(title);
         dialog.setHeaderText(header);
         dialog.showAndWait().ifPresent(action);
     }
 
     public static void confirmationDialog(String header, String content, Runnable action) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        var alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Conform operation");
         alert.setHeaderText(header);
         alert.setContentText(content);

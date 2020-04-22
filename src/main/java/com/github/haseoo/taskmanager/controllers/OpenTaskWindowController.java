@@ -34,7 +34,7 @@ public class OpenTaskWindowController {
 
     @FXML
     void onOpen() {
-        OpenWindowTableRecord selected = tasksLists.getSelectionModel().getSelectedItem();
+        var selected = tasksLists.getSelectionModel().getSelectedItem();
         if (selected != null) {
             taskListView.get().getTitle().setValue(selected.getTasksListName());
             closeWindow();
@@ -43,10 +43,10 @@ public class OpenTaskWindowController {
 
     @FXML
     void onImport() {
-        FileChooser fileChooser = new FileChooser();
+        var fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Task list file", "*.tsk"));
-        File file = fileChooser.showOpenDialog((Stage) tasksLists.getScene().getWindow());
+        var file = fileChooser.showOpenDialog((Stage) tasksLists.getScene().getWindow());
         if (file != null) {
             tasksLists.getItems().add(new OpenWindowTableRecord(file.getName(), LocalDateTime.now()));
         }

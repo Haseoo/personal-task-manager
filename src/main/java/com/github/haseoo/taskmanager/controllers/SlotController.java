@@ -6,9 +6,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
+import static javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED;
+import static javafx.scene.control.ScrollPane.ScrollBarPolicy.NEVER;
 
 public class SlotController {
     private final AtomicReference<TaskListView> taskListView;
@@ -28,7 +31,11 @@ public class SlotController {
     private SlotView currentSlot;
 
     @FXML
-    private Label slotLabel;
+    private Text slotLabel;
+    @FXML
+    private VBox slotVBox;
+    @FXML
+    private ScrollPane taskListScrollPane;
 
     public SlotController(AtomicReference<TaskListView> taskListView,
                           List<Node> slotPanes,
@@ -81,12 +88,16 @@ public class SlotController {
     }
 
     @FXML
-    void onAddCard() {
+    void onAddCard() throws IOException {
+        var loader = new FXMLLoader(getResourceURL("FXML/task.fxml"));
+        loader.setController(new TaskController());
+        GridPane newLoadedPane = loader.load();
+        slotVBox.getChildren().add(newLoadedPane);
 
     }
 
     private SlotDialogController prepareInputDialog() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getResourceURL("FXML/slotDialog.fxml"));
+        var loader = new FXMLLoader(getResourceURL("FXML/slotDialog.fxml"));
         var slotDialogController = new SlotDialogController(currentSlot, slotPanes.size());
         loader.setController(slotDialogController);
         Parent root = loader.load();
@@ -98,7 +109,7 @@ public class SlotController {
 
     private void moveSlot(int newPosition) {
         currentSlot.getPosition().setValue(newPosition);
-        int newIndex = currentSlot.getPosition().getValue();
+        var newIndex = currentSlot.getPosition().getValue();
         slotPanes.remove(currentPane);
         slotPanes.add(newIndex, currentPane);
         updateSlotPositions();
@@ -118,15 +129,13 @@ public class SlotController {
     }
 
     @FXML
-    void foo(MouseEvent e) {
-        System.out.println("SOURCE: " + e.getSource().hashCode());
-        var n = (Node) e.getSource();
-        System.out.println("SUROCEE:" + n.getParent().hashCode());
+    void showScrollBar() {
+        taskListScrollPane.setVbarPolicy(AS_NEEDED);
     }
 
     @FXML
-    void bar(MouseEvent e) {
-        System.out.println("SOURCE2: " + e.getSource().hashCode());
+    void hideScrollBar() {
+        taskListScrollPane.setVbarPolicy(NEVER);
     }
 
 }

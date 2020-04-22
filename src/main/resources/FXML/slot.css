@@ -10,7 +10,7 @@
 .slotLabel {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4BA9EF;
+    -fx-fill: #4BA9EF;
 }
 
 .slotHeader {
@@ -46,23 +46,32 @@
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-border-style: solid;
-    -fx-border-color: gray;
+    -fx-border-color: transparent;
+}
+.slotBtn:hover {
+    -fx-background-color: rgba(230, 236, 255, 0.8);
 }
 
-.cardLeftBtn:hover, .slotBtn:hover {
-    -fx-background-color: rgba(230, 236, 255, 0.8);
+.cardLeftBtn:hover {
+    -fx-border-color: gray;
 }
 
 .cardLeftBtn:pressed, .slotBtn:pressed {
     -fx-background-color: rgba(196, 212, 255, 0.8);
 }
 
+#fieldName {
+    -fx-font-size: 12px;
+}
+
 #fieldValue {
+    -fx-font-size: 10px;
     -fx-font-weight: bold;
 }
 
 .cardTitle {
-    -fx-font-size: 18px;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
     -fx-text-fill: #4BA9EF;
 }
 
