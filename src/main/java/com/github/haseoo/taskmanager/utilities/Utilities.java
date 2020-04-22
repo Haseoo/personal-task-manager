@@ -23,7 +23,7 @@ public class Utilities {
         return Objects.requireNonNull(FXMain.class.getClassLoader().getResource(relativePath));
     }
 
-    public static String getErrorMessage(Throwable throwable) {
+    public static String getErrorMessageForDialog(Throwable throwable) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(throwable.getMessage());
         Throwable cause = throwable.getCause();
@@ -41,7 +41,6 @@ public class Utilities {
         Scene scene = new Scene(root);
         dialog.setTitle(dialogTitle);
         dialog.setScene(scene);
-        dialog.showAndWait();
         return dialog;
     }
 

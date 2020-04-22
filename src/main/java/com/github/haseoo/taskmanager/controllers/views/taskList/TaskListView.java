@@ -19,14 +19,20 @@ public class TaskListView {
 
     StringProperty title;
     List<TagView> tags;
+    List<SlotView> slots;
 
 
     private static TaskListView prepareDefault() {
         List<TagView> tags = new ArrayList<>();
+        List<SlotView> slots = new ArrayList<>();
         tags.add(new TagView(UUID.fromString("00000000-0000-0000-0000-000000000001"), new SimpleStringProperty("Tag1")));
         tags.add(new TagView(UUID.fromString("00000000-0000-0000-0000-000000000002"), new SimpleStringProperty("Tag2")));
 
+        slots.add(new SlotView("Slot1", 0));
+        slots.add(new SlotView("Slot2", 1));
+
         return new TaskListView(new SimpleStringProperty("Untitled"),
-                tags);
+                tags,
+                slots);
     }
 }

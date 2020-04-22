@@ -19,7 +19,7 @@ public class OpenTaskWindowController {
     private final AtomicReference<TaskListView> taskListView;
 
     @FXML
-    TableView<OpenWindowTableRecord> tasksLists;
+    private TableView<OpenWindowTableRecord> tasksLists;
 
     @FXML
     void initialize() {
@@ -30,10 +30,6 @@ public class OpenTaskWindowController {
     @FXML
     void onCancel() {
         closeWindow();
-    }
-
-    private void closeWindow() {
-        ((Stage) tasksLists.getScene().getWindow()).close();
     }
 
     @FXML
@@ -63,5 +59,9 @@ public class OpenTaskWindowController {
             deleteConfirmationDialog(String.format("Are you sure to delete %s?", selected.getTasksListName()),
                     () -> tasksLists.getItems().remove(selected));
         }
+    }
+
+    private void closeWindow() {
+        ((Stage) tasksLists.getScene().getWindow()).close();
     }
 }

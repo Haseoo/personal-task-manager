@@ -153,7 +153,7 @@
                                 <Insets left="5.0"/>
                             </HBox.margin>
                             <graphic>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" smooth="true">
                                     <image>
                                         <Image url="@icons/editBlur.png"/>
                                     </image>

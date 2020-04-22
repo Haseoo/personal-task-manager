@@ -1,7 +1,8 @@
 .slot {
     -fx-border-style: solid;
     -fx-border-color: lightgray;
-    -fx-background-color: rgba(128, 128, 128, 0.02);
+    /*-fx-background-color: rgba(200, 200, 200, 0.02);*/
+    -fx-background-color: transparent;
     -fx-background-radius: 5;
     -fx-border-radius: 5;
 }
@@ -9,11 +10,12 @@
 .slotLabel {
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: blue;
+    -fx-text-fill: #4BA9EF;
 }
 
 .slotHeader {
-    -fx-background-color: rgba(128, 128, 164, 0.2);
+    /*-fx-background-color: rgba(128, 128, 164, 0.2);*/
+    -fx-background-color: linear-gradient(from 10% 30% to 100% 100%, rgba(128, 128, 164, 0.03), rgba(128, 128, 164, 0.15));
 }
 
 .card {
@@ -37,7 +39,10 @@
 }
 
 .cardLeftBtn, .slotBtn {
-    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-background-color: transparent;
+}
+
+.cardLeftBtn {
     -fx-border-radius: 5;
     -fx-background-radius: 5;
     -fx-border-style: solid;
@@ -58,12 +63,18 @@
 
 .cardTitle {
     -fx-font-size: 18px;
-    -fx-text-fill: blue;
+    -fx-text-fill: #4BA9EF;
 }
 
 .buttonTT {
     -fx-background-color: rgba(255, 255, 255, 0.85);
     -fx-text-fill: rgb(89, 107, 187);
+}
+
+.slotScroll {
+    -fx-border-style: solid none none none;
+    -fx-border-color: linear-gradient(from 10% 25% to 100% 100%, rgba(128, 128, 164, 0.2), rgba(128, 128, 164, 0.5));
+
 }
 
 .slotScroll, .slotScroll > .viewport {
