@@ -42,9 +42,8 @@ public class MainWindowController {
         for (var slot : taskListView.getSlots()) {
             loadSlot(new SlotController(
                     new AtomicReference<>(taskListView),
-                    this::onSlotRemove,
-                    this::onSlotMove,
-                    mainHBox.getChildren()::size,
+                    mainHBox.getChildren(),
+                    slots,
                     slot
             ));
         }
@@ -109,10 +108,8 @@ public class MainWindowController {
     void onAddSlot() throws IOException {
         loadSlot(new SlotController(
                 new AtomicReference<>(taskListView),
-                this::onSlotRemove,
-                this::onSlotMove,
-                mainHBox.getChildren()::size,
-                mainHBox.getChildren().size()
+                mainHBox.getChildren(),
+                slots
         ));
     }
 
@@ -123,6 +120,7 @@ public class MainWindowController {
         slotController.setPane(newLoadedPane);
         slots.add(slotController);
         mainHBox.getChildren().add(newLoadedPane);
+        newLoadedPane.setUserData(slotController.getCurrentSlot());
     }
 
     @FXML
@@ -131,24 +129,5 @@ public class MainWindowController {
                 "Edit task list name",
                 "Enter new name",
                 name -> taskListView.getTitle().setValue(name));
-    }
-
-    private void onSlotRemove(SlotController slot) {
-        mainHBox.getChildren().remove(slot.getCurrentPane());
-        slots.remove(slot);
-        updateSlotPositions();
-    }
-
-    private void onSlotMove(SlotController slot) {
-        int newIndex = slot.getCurrentSlot().getPosition().getValue();
-        mainHBox.getChildren().remove(slot.getCurrentPane());
-        mainHBox.getChildren().add(newIndex, slot.getCurrentPane());
-        updateSlotPositions();
-    }
-
-    private void updateSlotPositions() {
-        for (var slot : slots) {
-            slot.updatePosition(mainHBox.getChildren().indexOf(slot.getCurrentPane()));
-        }
     }
 }
