@@ -2,13 +2,11 @@ package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
 import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import lombok.Getter;
@@ -16,8 +14,6 @@ import lombok.Getter;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
-import java.util.function.IntSupplier;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 
@@ -122,14 +118,14 @@ public class SlotController {
     }
 
     @FXML
-    void foo (MouseEvent e) {
+    void foo(MouseEvent e) {
         System.out.println("SOURCE: " + e.getSource().hashCode());
         var n = (Node) e.getSource();
         System.out.println("SUROCEE:" + n.getParent().hashCode());
     }
 
     @FXML
-    void bar (MouseEvent e) {
+    void bar(MouseEvent e) {
         System.out.println("SOURCE2: " + e.getSource().hashCode());
     }
 
