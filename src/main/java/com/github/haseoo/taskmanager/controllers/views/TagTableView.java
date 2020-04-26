@@ -13,9 +13,9 @@ import static lombok.AccessLevel.PRIVATE;
 public class TagTableView {
     UUID id;
     String name;
-    int taskCount;
+    long taskCount;
 
-    public static TagTableView from(TagView tagView) {
-        return new TagTableView(tagView.getId(), tagView.getName().getValue(), 0);
+    public static TagTableView from(TagView tagView, long count) {
+        return new TagTableView(tagView.getId(), tagView.getName().getValue(), count);
     }
 }

@@ -5,28 +5,27 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<GridPane hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-          stylesheets="@taskWindow.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@taskWindow.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="NEVER"/>
-        <ColumnConstraints hgrow="ALWAYS"/>
-        <ColumnConstraints hgrow="NEVER"/>
+        <ColumnConstraints hgrow="NEVER" />
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+        <ColumnConstraints hgrow="NEVER" />
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <CheckBox fx:id="subTaskCheck" mnemonicParsing="false" styleClass="checkbox"/>
-        <TextField fx:id="subTaskInput" minWidth="500.0" prefHeight="25.0" styleClass="subTask" GridPane.columnIndex="1"
-                   GridPane.vgrow="NEVER"/>
-        <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false"
-                onAction="#onSubTaskRemove" prefHeight="25.0" prefWidth="25.0" styleClass="rmButton"
-                GridPane.columnIndex="2">
+        <CheckBox fx:id="subTaskCheck" mnemonicParsing="false" styleClass="checkbox" />
+        <TextField fx:id="subTaskInput" maxWidth="1.7976931348623157E308" prefHeight="25.0" styleClass="subTask" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS" />
+        <Button maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="25.0" mnemonicParsing="false" onAction="#onSubTaskRemove" prefHeight="25.0" prefWidth="25.0" styleClass="rmButton" GridPane.columnIndex="2">
             <graphic>
                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@icons/removeBlack.png"/>
+                        <Image url="@icons/removeBlack.png" />
                     </image>
                 </ImageView>
             </graphic>

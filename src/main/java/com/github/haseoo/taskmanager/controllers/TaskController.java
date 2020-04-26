@@ -10,6 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import lombok.Getter;
@@ -24,6 +26,7 @@ import java.util.function.BiConsumer;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 import static java.util.stream.Collectors.toList;
+import static javafx.scene.input.MouseButton.PRIMARY;
 
 public class TaskController {
     private final AtomicReference<TaskListView> taskListView;
@@ -117,13 +120,15 @@ public class TaskController {
     }
 
     @FXML
-    void onClick() throws IOException {
-        prepareWindow("FXML/taskWindow.fxml",
-                currentTask.getName().getValueSafe(),
-                new TaskWindowController(currentTask,
-                        otherTasks.size(),
-                        new AtomicReference<>(taskListView.get().getTags()),
-                        this::moveTask));
+    void onClick(MouseEvent ev) throws IOException {
+        if (ev.getButton().equals(PRIMARY)) {
+            prepareWindow("FXML/taskWindow.fxml",
+                    currentTask.getName().getValueSafe(),
+                    new TaskWindowController(currentTask,
+                            otherTasks.size(),
+                            new AtomicReference<>(taskListView.get().getTags()),
+                            this::moveTask));
+        }
     }
 
     @FXML

@@ -81,7 +81,7 @@
             </rowConstraints>
             <children>
                 <Label minHeight="30.0" minWidth="30.0" text="Description" />
-                <TextArea fx:id="descriptionInput" maxHeight="150.0" minWidth="150.0" prefWidth="150.0" GridPane.rowIndex="1" />
+                <TextArea fx:id="descriptionInput" maxHeight="150.0" minHeight="150.0" minWidth="150.0" prefHeight="150.0" prefWidth="150.0" GridPane.rowIndex="1" />
             </children>
         </GridPane>
         <GridPane GridPane.rowIndex="2">
@@ -128,12 +128,15 @@
                 <Button defaultButton="true" mnemonicParsing="false" onAction="#onSave" styleClass="btn" text="Save" GridPane.columnIndex="1" />
             </children>
         </GridPane>
-        <ScrollPane hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" vbarPolicy="ALWAYS" GridPane.rowIndex="4">
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="350.0" maxWidth="1.7976931348623157E308" minHeight="150.0" vbarPolicy="ALWAYS" GridPane.rowIndex="4">
             <content>
-                <VBox>
-                    <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                    </padding>
+                <VBox fx:id="subTaskVBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
                 </VBox>
             </content>
         </ScrollPane>

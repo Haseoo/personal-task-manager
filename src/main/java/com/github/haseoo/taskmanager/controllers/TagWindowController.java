@@ -1,17 +1,22 @@
 package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.controllers.views.TagTableView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.SlotView;
 import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
 import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.deleteConfirmationDialog;
 import static com.github.haseoo.taskmanager.utilities.Utilities.textInputDialog;
-import static java.util.stream.Collectors.toList;
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.*;
 
 @RequiredArgsConstructor
 public class TagWindowController {
@@ -22,7 +27,20 @@ public class TagWindowController {
 
     @FXML
     void initialize() {
-        tagTable.getItems().addAll(taskListView.get().getTags().stream().map(TagTableView::from).collect(toList()));
+        var tagTableItems = tagTable.getItems();
+        var tasks = taskListView
+                .get()
+                .getSlots()
+                .stream()
+                .map(SlotView::getTasks)
+                .flatMap(List::stream)
+                .map(TaskView::getTagName)
+                .map(SimpleStringProperty::getValueSafe)
+                .collect(groupingBy(identity(), counting()));
+        for(var tag: taskListView.get().getTags()) {
+            var count = tasks.get(tag.getName().getValueSafe());
+            tagTableItems.add(TagTableView.from(tag, (count == null) ? 0 : count));
+        }
     }
 
     @FXML
@@ -64,12 +82,12 @@ public class TagWindowController {
         toEdit.getName().setValue(name);
         tagTable.getItems()
                 .set(tagTable.getSelectionModel().getSelectedIndex(),
-                        TagTableView.from(toEdit));
+                        TagTableView.from(toEdit, selected.getTaskCount()));
     }
 
     void addNewTag(String tagName) {
         var tag = TagView.form(tagName);
         taskListView.get().getTags().add(tag);
-        tagTable.getItems().add(TagTableView.from(tag));
+        tagTable.getItems().add(TagTableView.from(tag, 0));
     }
 }
