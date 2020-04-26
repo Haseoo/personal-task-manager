@@ -1,6 +1,6 @@
 package com.github.haseoo.taskmanager.controllers.views;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.TagView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 

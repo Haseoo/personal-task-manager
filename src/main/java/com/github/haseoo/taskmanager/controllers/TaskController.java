@@ -1,10 +1,8 @@
 package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.controllers.views.SlotComboBoxView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskView;
-import com.github.haseoo.taskmanager.utilities.Utilities;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
@@ -134,7 +132,7 @@ public class TaskController {
     }
 
     private void updateCardPosition() {
-        for(var task : otherTasks) {
+        for (var task : otherTasks) {
             task.currentTask.getPosition().setValue(otherTaskCards.indexOf(task.currentCard));
         }
     }

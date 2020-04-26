@@ -1,8 +1,8 @@
 package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.controllers.views.TagTableView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TagView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import lombok.RequiredArgsConstructor;

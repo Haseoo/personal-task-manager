@@ -1,7 +1,7 @@
 package com.github.haseoo.taskmanager;
 
 import com.github.haseoo.taskmanager.controllers.MainWindowController;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

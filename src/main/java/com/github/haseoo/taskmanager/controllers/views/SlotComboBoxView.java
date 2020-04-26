@@ -1,11 +1,9 @@
 package com.github.haseoo.taskmanager.controllers.views;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.SlotView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Value;
 
-import java.rmi.server.UID;
 import java.util.UUID;
 
 import static lombok.AccessLevel.PRIVATE;

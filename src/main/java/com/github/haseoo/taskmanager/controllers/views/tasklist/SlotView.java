@@ -1,4 +1,4 @@
-package com.github.haseoo.taskmanager.controllers.views.taskList;
+package com.github.haseoo.taskmanager.controllers.views.tasklist;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

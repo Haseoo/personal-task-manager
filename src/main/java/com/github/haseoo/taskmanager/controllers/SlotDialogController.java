@@ -1,6 +1,6 @@
 package com.github.haseoo.taskmanager.controllers;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.SlotView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;

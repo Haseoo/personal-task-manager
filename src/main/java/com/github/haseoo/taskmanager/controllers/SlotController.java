@@ -1,7 +1,7 @@
 package com.github.haseoo.taskmanager.controllers;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.SlotView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -157,7 +157,7 @@ public class SlotController {
 
     private void updateCardPosition() {
         var cards = slotVBox.getChildren();
-        for(var task : tasks) {
+        for (var task : tasks) {
             task.getCurrentTask().getPosition().setValue(cards.indexOf(task.getCurrentCard()));
         }
     }

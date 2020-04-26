@@ -1,6 +1,6 @@
 package com.github.haseoo.taskmanager.controllers;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskListView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;

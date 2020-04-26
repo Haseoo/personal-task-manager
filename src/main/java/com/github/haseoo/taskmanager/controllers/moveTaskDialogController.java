@@ -1,12 +1,10 @@
 package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.controllers.views.SlotComboBoxView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.SlotView;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

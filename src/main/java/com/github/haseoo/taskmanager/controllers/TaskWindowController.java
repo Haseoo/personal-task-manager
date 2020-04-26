@@ -1,7 +1,7 @@
 package com.github.haseoo.taskmanager.controllers;
 
-import com.github.haseoo.taskmanager.controllers.views.taskList.TagView;
-import com.github.haseoo.taskmanager.controllers.views.taskList.TaskView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
+import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.OptionalInt;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.IntConsumer;
 
@@ -42,13 +41,13 @@ public class TaskWindowController {
     void initialize() {
         nameInput.setText(currentTask.getName().getValueSafe());
         var tagInputItems = tagInput.getItems();
-        for(var tag : tags.get()) {
+        for (var tag : tags.get()) {
             tagInputItems.add(tag.getName().getValueSafe());
         }
-        if(!currentTask.getDateFrom().getValueSafe().isEmpty()) {
+        if (!currentTask.getDateFrom().getValueSafe().isEmpty()) {
             dateFromInput.setValue(LocalDate.parse(currentTask.getDateFrom().getValueSafe(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         }
-        if(!currentTask.getDateTo().getValueSafe().isEmpty()) {
+        if (!currentTask.getDateTo().getValueSafe().isEmpty()) {
             dateToInput.setValue(LocalDate.parse(currentTask.getDateTo().getValueSafe(), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         }
         if (!currentTask.getCompleteness().getValueSafe().isEmpty()) {
