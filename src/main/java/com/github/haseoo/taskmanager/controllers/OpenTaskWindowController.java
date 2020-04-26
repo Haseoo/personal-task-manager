@@ -8,7 +8,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicReference;
 

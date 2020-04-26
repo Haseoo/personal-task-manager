@@ -1,23 +1,21 @@
 package com.github.haseoo.taskmanager.controllers.views.taskList;
-
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import lombok.Value;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @Value
-public class SlotView {
+public class TaskView {
     UUID id;
     SimpleStringProperty name;
+    SimpleStringProperty dateFrom;
+    SimpleStringProperty dateTo;
+    SimpleStringProperty completeness;
+    SimpleStringProperty tagName;
+    SimpleStringProperty description;
     SimpleIntegerProperty position;
-    List<TaskView> tasks = new ArrayList<>();
-
-    public SlotView(String name, int position) {
-        this.name = new SimpleStringProperty(name);
-        id = UUID.randomUUID();
-        this.position = new SimpleIntegerProperty(position);
-    }
+    List<SubTaskView> subTasks;
 }

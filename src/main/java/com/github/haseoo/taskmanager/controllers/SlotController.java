@@ -13,7 +13,9 @@ import javafx.scene.text.Text;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
@@ -29,6 +31,7 @@ public class SlotController {
     private GridPane currentPane;
     @Getter
     private SlotView currentSlot;
+    private List<TaskController> tasks;
 
     @FXML
     private Text slotLabel;
@@ -69,6 +72,7 @@ public class SlotController {
 
     @FXML
     void initialize() {
+        tasks = new ArrayList<>();
         slotLabel.textProperty().bindBidirectional(currentSlot.getName());
     }
 
@@ -90,10 +94,14 @@ public class SlotController {
     @FXML
     void onAddCard() throws IOException {
         var loader = new FXMLLoader(getResourceURL("FXML/task.fxml"));
-        loader.setController(new TaskController());
+        var controller = new TaskController(taskListView, slotVBox.getChildren(), tasks);
+        loader.setController(controller);
         GridPane newLoadedPane = loader.load();
         slotVBox.getChildren().add(newLoadedPane);
-
+        tasks.add(controller);
+        controller.setCurrentCard(newLoadedPane);
+        controller.setMoveTask(this::moveTaskToSlot);
+        currentSlot.getTasks().add(controller.getCurrentTask());
     }
 
     private SlotDialogController prepareInputDialog() throws IOException {
@@ -128,6 +136,32 @@ public class SlotController {
         }
     }
 
+    private void moveTaskToSlot(TaskController task, UUID destSlot) {
+        var dest = otherSlots.stream()
+                .filter(controller -> controller.currentSlot.getId().equals(destSlot))
+                .findAny()
+                .orElseThrow(AssertionError::new);
+
+        slotVBox.getChildren().remove(task.getCurrentCard());
+        tasks.remove(task);
+        currentSlot.getTasks().remove(task.getCurrentTask());
+        dest.tasks.add(task);
+        dest.slotVBox.getChildren().add(task.getCurrentCard());
+        task.setMoveTask(dest::moveTaskToSlot);
+        dest.currentSlot.getTasks().add(task.getCurrentTask());
+        task.setOtherTaskCards(dest.slotVBox.getChildren());
+        task.setOtherTasks(dest.tasks);
+        updateCardPosition();
+        dest.updateCardPosition();
+    }
+
+    private void updateCardPosition() {
+        var cards = slotVBox.getChildren();
+        for(var task : tasks) {
+            task.getCurrentTask().getPosition().setValue(cards.indexOf(task.getCurrentCard()));
+        }
+    }
+
     @FXML
     void showScrollBar() {
         taskListScrollPane.setVbarPolicy(AS_NEEDED);
@@ -137,5 +171,6 @@ public class SlotController {
     void hideScrollBar() {
         taskListScrollPane.setVbarPolicy(NEVER);
     }
+
 
 }

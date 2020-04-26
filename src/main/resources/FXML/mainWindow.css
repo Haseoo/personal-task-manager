@@ -3,15 +3,15 @@
 }
 
 .addButton {
-    -fx-background-color: rgba(240, 242, 255, 0.8);
+    -fx-background-color: rgba(225, 228, 250, 0.8);
 }
 
 .menuButton:hover, .addButton:hover {
-    -fx-background-color: rgba(230, 236, 255, 0.8);
+    -fx-background-color: rgba(209, 220, 253, 0.8);
 }
 
 .menuButton:pressed, .addButton:pressed {
-    -fx-background-color: rgba(196, 212, 255, 0.8);
+    -fx-background-color: rgba(200, 214, 253, 0.8);
 }
 
 .mainWindow {

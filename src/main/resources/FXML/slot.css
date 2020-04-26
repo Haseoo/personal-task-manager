@@ -57,7 +57,7 @@
 }
 
 .cardLeftBtn:pressed, .slotBtn:pressed {
-    -fx-background-color: rgba(196, 212, 255, 0.8);
+    -fx-background-color: rgba(218, 227, 252, 0.8);
 }
 
 #fieldName {
@@ -65,7 +65,7 @@
 }
 
 #fieldValue {
-    -fx-font-size: 10px;
+    -fx-font-size: 12px;
     -fx-font-weight: bold;
 }
 

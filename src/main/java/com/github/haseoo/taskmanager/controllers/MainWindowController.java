@@ -52,8 +52,12 @@ public class MainWindowController {
     @FXML
     void onNew() {
         confirmationDialog("Are you sure to create new list?", "All unsaved work will be lost", () -> {
+            taskListView.getSlots().clear();
+            slots.clear();
+            mainHBox.getChildren().clear();
+            taskListView.getTags().clear();
+            taskListTitle.textProperty().set("Untitled");
         });
-        //TODO Add action
     }
 
     @FXML
@@ -74,6 +78,7 @@ public class MainWindowController {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Export task list");
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Task list file", "*.tsk"));
+        fileChooser.setInitialFileName(taskListTitle.getText());
         fileChooser.showSaveDialog((Stage) taskListTitle.getScene().getWindow());
     }
 
