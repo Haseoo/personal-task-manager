@@ -32,7 +32,7 @@ public class TaskWindowController {
     private final AtomicReference<List<TagView>> tags;
     private final IntConsumer onTaskMove;
 
-    private  List<SubTaskController> subTasks;
+    private List<SubTaskController> subTasks;
 
     @FXML
     private TextField nameInput;
@@ -68,12 +68,15 @@ public class TaskWindowController {
             tagInput.setValue(currentTask.getTagName().getValueSafe());
         }
         descriptionInput.setText(currentTask.getDescription().getValueSafe());
-        positionInput.setValueFactory(new IntegerSpinnerValueFactory(1,
-                maxPosition,
-                currentTask.getPosition().getValue() + 1));
-
+        if (onTaskMove != null) {
+            positionInput.setValueFactory(new IntegerSpinnerValueFactory(1,
+                    maxPosition,
+                    currentTask.getPosition().getValue() + 1));
+        } else {
+            positionInput.setDisable(true);
+        }
         subTasks = new ArrayList<>();
-        for(var subTask : currentTask.getSubTasks()) {
+        for (var subTask : currentTask.getSubTasks()) {
             loadTask(subTask);
         }
         updateCompleteness();
@@ -110,13 +113,15 @@ public class TaskWindowController {
         if (newDateFrom != null) {
             currentTask.getDateFrom().setValue(newDateFrom.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         }
-        var newPosition = positionInput.getValue() - 1;
-        if (currentTask.getPosition().get() != newPosition) {
-            onTaskMove.accept(newPosition);
+        if (onTaskMove != null) {
+            var newPosition = positionInput.getValue() - 1;
+            if (currentTask.getPosition().get() != newPosition) {
+                onTaskMove.accept(newPosition);
+            }
         }
-        var currentSubTasks =  currentTask.getSubTasks();
+        var currentSubTasks = currentTask.getSubTasks();
         currentSubTasks.clear();
-        for(var subTask : subTasks) {
+        for (var subTask : subTasks) {
             currentSubTasks.add(subTask.getCurrentSubTask());
         }
         if (subTasks.isEmpty()) {

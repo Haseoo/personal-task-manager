@@ -16,7 +16,8 @@ import java.util.concurrent.atomic.AtomicReference;
 import static com.github.haseoo.taskmanager.utilities.Utilities.deleteConfirmationDialog;
 import static com.github.haseoo.taskmanager.utilities.Utilities.textInputDialog;
 import static java.util.function.Function.identity;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 @RequiredArgsConstructor
 public class TagWindowController {
@@ -37,7 +38,7 @@ public class TagWindowController {
                 .map(TaskView::getTagName)
                 .map(SimpleStringProperty::getValueSafe)
                 .collect(groupingBy(identity(), counting()));
-        for(var tag: taskListView.get().getTags()) {
+        for (var tag : taskListView.get().getTags()) {
             var count = tasks.get(tag.getName().getValueSafe());
             tagTableItems.add(TagTableView.from(tag, (count == null) ? 0 : count));
         }

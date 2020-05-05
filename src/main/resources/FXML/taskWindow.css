@@ -26,6 +26,12 @@
     -fx-font-size: 14px;
 }
 
+.subTask:hover, .subTask:focused {
+    -fx-background-color: linear-gradient(from 10% 30% to 100% 100%, rgba(128, 128, 164, 0.25), rgba(128, 128, 164, 0.10));
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(from 10% 30% to 100% 100%, rgba(128, 128, 164, 0.74), rgba(128, 128, 164, 0.55));
+}
+
 .check-box > .box > .mark {
     -fx-padding: 7px;
 }

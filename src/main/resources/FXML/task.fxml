@@ -1,102 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
-
-<GridPane onMouseClicked="#onClick" onMouseEntered="#showInfo" onMouseExited="#hideInfo" styleClass="card" stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<GridPane onMouseClicked="#onClick" onMouseEntered="#showInfo" onMouseExited="#hideInfo" styleClass="card"
+          stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-      <ColumnConstraints />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+        <ColumnConstraints/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints minHeight="60.0" vgrow="ALWAYS" />
+        <RowConstraints minHeight="60.0" vgrow="ALWAYS"/>
     </rowConstraints>
     <children>
         <GridPane fx:id="rightGrid">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="180.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
-                <RowConstraints fillHeight="false" vgrow="NEVER" />
+                <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
+                <RowConstraints fillHeight="false" vgrow="NEVER"/>
             </rowConstraints>
             <children>
-                <Label fx:id="taskLabel" alignment="TOP_LEFT" styleClass="cardTitle" text="New task" textOverrun="WORD_ELLIPSIS" wrapText="true">
-               <GridPane.margin>
-                  <Insets bottom="5.0" />
-               </GridPane.margin></Label>
+                <Label fx:id="taskLabel" alignment="TOP_LEFT" styleClass="cardTitle" text="New task"
+                       textOverrun="WORD_ELLIPSIS" wrapText="true">
+                    <GridPane.margin>
+                        <Insets bottom="5.0"/>
+                    </GridPane.margin>
+                </Label>
                 <VBox fx:id="moreInfo" alignment="CENTER_LEFT" maxHeight="0.0" spacing="2.0" GridPane.rowIndex="1">
                     <children>
                         <HBox fx:id="fromHBox" spacing="10.0">
                             <children>
-                                <Text id="fieldName" text="From" />
-                                <Text id="fieldValue" fx:id="taskFromDate" />
+                                <Text id="fieldName" text="From"/>
+                                <Text id="fieldValue" fx:id="taskFromDate"/>
                             </children>
                         </HBox>
                         <HBox fx:id="toHBox" spacing="10.0">
                             <children>
-                                <Text id="fieldName" text="To" />
-                                <Text id="fieldValue" fx:id="taskToDate" />
+                                <Text id="fieldName" text="To"/>
+                                <Text id="fieldValue" fx:id="taskToDate"/>
                             </children>
                         </HBox>
                         <HBox fx:id="compHBox" spacing="10.0">
                             <children>
-                                <Text id="fieldName" text="Completness" />
-                                <Text id="fieldValue" fx:id="taskCompleteness" />
+                                <Text id="fieldName" text="Completness"/>
+                                <Text id="fieldValue" fx:id="taskCompleteness"/>
                             </children>
                         </HBox>
                         <HBox fx:id="tagHBox" spacing="10.0">
                             <children>
-                                <Label id="fieldName" minWidth="20.0" text="Tag" />
-                                <Label id="fieldValue" fx:id="taskTag" wrapText="true" />
+                                <Label id="fieldName" minWidth="20.0" text="Tag"/>
+                                <Label id="fieldValue" fx:id="taskTag" wrapText="true"/>
                             </children>
                         </HBox>
                     </children>
                 </VBox>
             </children>
             <GridPane.margin>
-                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
+                <Insets bottom="7.0" left="7.0" right="7.0" top="7.0"/>
             </GridPane.margin>
         </GridPane>
         <VBox maxWidth="1.7976931348623157E308" GridPane.columnIndex="1">
             <children>
-                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onTaskDelete" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
+                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false"
+                        onAction="#onTaskDelete" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/remove.png" />
+                                <Image url="@icons/remove.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                     <tooltip>
-                        <Tooltip styleClass="buttonTT" text="Remove task" />
+                        <Tooltip styleClass="buttonTT" text="Remove task"/>
                     </tooltip>
                 </Button>
-                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false" onAction="#onTaskMove" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
+                <Button maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" mnemonicParsing="false"
+                        onAction="#onTaskMove" prefHeight="20.0" prefWidth="20.0" styleClass="cardLeftBtn">
                     <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/forward.png" />
+                                <Image url="@icons/forward.png"/>
                             </image>
                         </ImageView>
                     </graphic>
                     <tooltip>
-                        <Tooltip styleClass="buttonTT" text="Move task" />
+                        <Tooltip styleClass="buttonTT" text="Move task"/>
                     </tooltip>
                 </Button>
             </children>
             <GridPane.margin>
-                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                <Insets bottom="3.0" left="3.0" right="3.0" top="3.0"/>
             </GridPane.margin>
         </VBox>
     </children>
