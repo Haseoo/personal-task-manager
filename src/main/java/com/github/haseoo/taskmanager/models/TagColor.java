@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TagColor {
-    private byte red;
-    private byte blue;
-    private byte green;
+    private int red;
+    private int blue;
+    private int green;
 }
