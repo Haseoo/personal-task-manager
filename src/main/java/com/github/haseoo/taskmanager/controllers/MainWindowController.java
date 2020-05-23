@@ -106,7 +106,7 @@ public class MainWindowController {
 
     @FXML
     void onInfo() {
-
+        application.getHostServices().showDocument("http://dawidhomeserver.ddns.net/resources/PTM/instrukcja.pdf");
     }
 
     @FXML

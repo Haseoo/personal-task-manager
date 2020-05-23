@@ -19,19 +19,19 @@ jacoco {
 
 javafx {
     version = "11.0.1"
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 sourceSets {
     main {
         resources {
-            srcDirs= ['src/main/resources']
+            srcDirs = ['src/main/resources']
             includes = ['FXML/*.fxml', 'FXML/icons/*.png', 'FXML/*.css']
         }
     }
     test {
         resources {
-            resources.srcDirs= ['src/test/resources']
+            resources.srcDirs = ['src/test/resources']
             includes = ['*.*']
         }
     }
@@ -40,7 +40,7 @@ sourceSets {
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
 if (currentOS.isWindows()) {
-    platform = 'win'
+    platform = 'linux'
 } else if (currentOS.isLinux()) {
     platform = 'linux'
 } else if (currentOS.isMacOsX()) {
