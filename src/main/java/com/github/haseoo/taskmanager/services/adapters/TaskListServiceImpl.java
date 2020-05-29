@@ -120,12 +120,13 @@ public class TaskListServiceImpl implements TaskListService {
 
 
     @Override
-    public void moveTask(UUID taskId, UUID slotId) {
+    public void moveTask(int position, UUID taskId, UUID slotId) {
         var task = getTaskById(taskId);
         var newSlot = getSlotById(slotId);
         var oldSlot = task.getSlot();
         oldSlot.getTasks().remove(task);
-        newSlot.getTasks().add(task);
+        newSlot.getTasks().add(position, task);
+        task.setSlot(newSlot);
     }
 
 

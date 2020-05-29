@@ -11,4 +11,5 @@ public final class DialogStrings {
     public static final String SLOT_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete slot %s";
     public static final String SLOT_EDIT_WINDOW_TITLE_FORMAT = "Edit %s";
     public static final String TASK_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete task %s";
+    public static final String TASK_MOVE_DIALOG_TITLE_FORMAT = "Move task %s";
 }

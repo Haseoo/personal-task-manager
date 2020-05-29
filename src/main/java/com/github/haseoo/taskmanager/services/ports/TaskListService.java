@@ -43,5 +43,5 @@ public interface TaskListService {
 
     void removeTask(UUID id);
 
-    void moveTask(UUID taskId, UUID slotId);
+    void moveTask(int position, UUID taskId, UUID slotId);
 }

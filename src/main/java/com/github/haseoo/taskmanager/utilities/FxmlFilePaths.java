@@ -10,4 +10,5 @@ public final class FxmlFilePaths {
     public static final String SLOT_DIALOG = "FXML/slotDialog.fxml";
     public static final String TASK_CARD = "FXML/task.fxml";
     public static final String SLOT = "FXML/slot.fxml";
+    public static final String MOVE_TASK_DIALOG = "FXML/moveTask.fxml";
 }

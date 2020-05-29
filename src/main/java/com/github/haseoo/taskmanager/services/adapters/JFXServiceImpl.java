@@ -60,6 +60,10 @@ public class JFXServiceImpl {
         newSlot.setPositionSupplier(this::getSlotPosition);
     }
 
+    public List<SlotData> getSlots() {
+        return taskListService.getSlots();
+    }
+
     public int getSlotPosition(UUID slotId) {
         return slotHBox.getChildren().indexOf(slots.get(slotId).getSlotNode());
     }
@@ -99,6 +103,18 @@ public class JFXServiceImpl {
         var taskController = tasks.get(taskId);
         slotCards.get(task.getSlot().getId()).remove(taskController.getCurrentCard());
         taskListService.removeTask(taskId);
+    }
+
+    public void moveTaskToSlot(UUID taskId, UUID slotId, int position) {
+        var task = taskListService.getTaskById(taskId);
+        var card = tasks.get(taskId).getCurrentCard();
+        slotCards.get(task.getSlot().getId()).remove(card);
+        slotCards.get(slotId).add(position, card);
+        taskListService.moveTask(position, taskId, slotId);
+    }
+
+    public int getCardsInSlotCount(UUID slotId) {
+        return slotCards.get(slotId).size();
     }
 
 
