@@ -8,6 +8,7 @@ import com.github.haseoo.taskmanager.data.SlotData;
 import com.github.haseoo.taskmanager.data.TaskData;
 import com.github.haseoo.taskmanager.data.TaskListData;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
+import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import com.github.haseoo.taskmanager.utilities.URLs;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -113,7 +114,7 @@ public class JFXServiceImpl {
     }
 
     private GridPane loadCard(TaskController taskController) throws IOException {
-        var loader = new FXMLLoader(getResourceURL("FXML/task.fxml"));
+        var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.TASK_CARD));
         loader.setController(taskController);
         return loader.load();
     }
@@ -125,7 +126,7 @@ public class JFXServiceImpl {
     }
 
     private GridPane loadSlot(SlotController controller) throws IOException {
-        var loader = new FXMLLoader(getResourceURL("FXML/slot.fxml"));
+        var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.SLOT));
         loader.setController(controller);
         return loader.load();
     }

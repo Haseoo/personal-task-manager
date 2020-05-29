@@ -2,6 +2,7 @@ package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.data.SlotData;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
+import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -15,6 +16,8 @@ import lombok.Setter;
 
 import java.io.IOException;
 
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.SLOT_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT;
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.SLOT_EDIT_WINDOW_TITLE_FORMAT;
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED;
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.NEVER;
@@ -52,7 +55,7 @@ public class SlotController {
     @FXML
     private void onSlotDelete() {
         deleteConfirmationDialog(
-                String.format("Are you sure do delete slot %s", currentSlot.getName()),
+                String.format(SLOT_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT, currentSlot.getName()),
                 this::removeSlot
         );
     }
@@ -78,11 +81,11 @@ public class SlotController {
     }
 
     private SlotDialogController prepareInputDialog() throws IOException {
-        var loader = new FXMLLoader(getResourceURL("FXML/slotDialog.fxml"));
+        var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.SLOT_DIALOG));
         var slotDialogController = new SlotDialogController(currentSlot, jfxService.getSlotCount());
         loader.setController(slotDialogController);
         Parent root = loader.load();
-        var dialog = prepareDialog(root, String.format("Edit %s", currentSlot.getName()));
+        var dialog = prepareDialog(root, String.format(SLOT_EDIT_WINDOW_TITLE_FORMAT, currentSlot.getName()));
         dialog.setResizable(false);
         dialog.showAndWait();
         return slotDialogController;

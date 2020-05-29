@@ -4,6 +4,7 @@ import com.github.haseoo.taskmanager.controllers.MainWindowController;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
 import com.github.haseoo.taskmanager.services.adapters.TaskListServiceImpl;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
+import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import static com.github.haseoo.taskmanager.utilities.Constants.APPLICATION_NAME;
 import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
 
 public class FXMain extends Application {
@@ -21,7 +23,7 @@ public class FXMain extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        var mainWindow = new FXMLLoader(getResourceURL("FXML/mainWindow.fxml"));
+        var mainWindow = new FXMLLoader(getResourceURL(FxmlFilePaths.MAIN_WINDOW));
         //mainWindow.setController(new MainWindowController(this, TaskListView.DEFAULT_VALUE));
         TaskListService taskListService = new TaskListServiceImpl();
         JFXServiceImpl jfxService = new JFXServiceImpl(this, taskListService);
@@ -31,7 +33,7 @@ public class FXMain extends Application {
 
         Scene scene = new Scene(root);
 
-        stage.setTitle("Personal task manager");
+        stage.setTitle(APPLICATION_NAME);
         stage.setScene(scene);
         stage.show();
     }

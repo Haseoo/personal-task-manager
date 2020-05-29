@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_HEADER;
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_TITLE;
 import static com.github.haseoo.taskmanager.utilities.Utilities.textInputDialog;
 
 @RequiredArgsConstructor
@@ -74,8 +76,8 @@ public class MainWindowController {
     @FXML
     void onTitleEdit() {
         textInputDialog(taskListTitle.getText(),
-                "Edit task list name",
-                "Enter new name",
+                TASK_LIST_TITLE_EDIT_DIALOG_TITLE,
+                TASK_LIST_TITLE_EDIT_DIALOG_HEADER,
                 name -> jfxService.getCurrentTaskList().setName(name));
     }
 }

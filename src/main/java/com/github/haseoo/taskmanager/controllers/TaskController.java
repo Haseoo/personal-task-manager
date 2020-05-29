@@ -13,6 +13,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT;
 import static com.github.haseoo.taskmanager.utilities.Utilities.deleteConfirmationDialog;
 
 @RequiredArgsConstructor
@@ -70,7 +71,7 @@ public class TaskController {
     @FXML
     private void onTaskDelete() {
         deleteConfirmationDialog(
-                String.format("Are you sure do delete task %s", currentTask.getName()),
+                String.format(TASK_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT, currentTask.getName()),
                 () -> jfxService.removeTask(currentTask.getId())
         );
     }
