@@ -1,6 +1,7 @@
 package com.github.haseoo.taskmanager.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.haseoo.taskmanager.data.SlotData;
 import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,6 +17,12 @@ public class Slot {
     private UUID id;
     private String name;
     private int position;
+
+    public static Slot form(SlotData slotData) {
+        return new Slot(slotData.getId(),
+                slotData.getName(),
+                slotData.getPosition());
+    }
 
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();

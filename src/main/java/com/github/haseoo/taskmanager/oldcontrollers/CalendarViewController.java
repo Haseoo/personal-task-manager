@@ -1,9 +1,9 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.TaskTableView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.SlotView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.TaskTableView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.SlotView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskView;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

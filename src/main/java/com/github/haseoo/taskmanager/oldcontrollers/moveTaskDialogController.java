@@ -1,6 +1,6 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.SlotComboBoxView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.SlotComboBoxView;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;

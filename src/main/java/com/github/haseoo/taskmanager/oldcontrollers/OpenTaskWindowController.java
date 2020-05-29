@@ -1,7 +1,7 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.OpenWindowTableRecord;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.OpenWindowTableRecord;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskListView;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.stage.FileChooser;

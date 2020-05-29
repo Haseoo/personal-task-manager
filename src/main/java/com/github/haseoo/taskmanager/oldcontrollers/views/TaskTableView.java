@@ -1,6 +1,6 @@
-package com.github.haseoo.taskmanager.controllers.views;
+package com.github.haseoo.taskmanager.oldcontrollers.views;
 
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskView;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 

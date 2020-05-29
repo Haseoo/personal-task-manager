@@ -14,6 +14,7 @@ import static utils.DefaultValues.DEFAULT_TASK_LIST_NAME;
 
 @AllArgsConstructor(access = PRIVATE)
 public final class TaskListData {
+    @Getter
     private final UUID id;
     private final StringProperty name;
     @Getter

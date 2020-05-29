@@ -4,6 +4,7 @@ import com.github.haseoo.taskmanager.data.SlotData;
 import com.github.haseoo.taskmanager.data.TagData;
 import com.github.haseoo.taskmanager.data.TaskData;
 import com.github.haseoo.taskmanager.data.TaskListData;
+import com.github.haseoo.taskmanager.models.TaskList;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
 
 import java.util.List;
@@ -31,8 +32,13 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
-    public void saveList() {
+    public TaskList prepareModels() {
+        return TaskList.from(taskList);
+    }
 
+    @Override
+    public TaskListData getCurrentTaskList() {
+        return taskList;
     }
 
     @Override
@@ -44,8 +50,8 @@ public class TaskListServiceImpl implements TaskListService {
     public TagData getTagById(UUID id) {
         return taskList.getTags()
                 .stream()
-                    .filter(tag -> tag.getId().equals(id))
-                    .findAny()
+                .filter(tag -> tag.getId().equals(id))
+                .findAny()
                 .orElseThrow(AssertionError::new);
     }
 

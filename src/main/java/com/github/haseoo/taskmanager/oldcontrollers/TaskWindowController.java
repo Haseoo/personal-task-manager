@@ -1,8 +1,8 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.tasklist.SubTaskView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.SubTaskView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TagView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskView;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;

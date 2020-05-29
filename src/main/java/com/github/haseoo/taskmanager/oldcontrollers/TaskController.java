@@ -1,8 +1,8 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.SlotComboBoxView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.SlotComboBoxView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskView;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;

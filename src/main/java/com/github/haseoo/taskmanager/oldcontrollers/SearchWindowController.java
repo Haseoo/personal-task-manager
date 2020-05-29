@@ -1,7 +1,7 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TagView;
-import com.github.haseoo.taskmanager.controllers.views.tasklist.TaskListView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TagView;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.TaskListView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;

@@ -1,6 +1,6 @@
-package com.github.haseoo.taskmanager.controllers;
+package com.github.haseoo.taskmanager.oldcontrollers;
 
-import com.github.haseoo.taskmanager.data.SlotData;
+import com.github.haseoo.taskmanager.oldcontrollers.views.tasklist.SlotView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory;
@@ -13,7 +13,7 @@ import java.util.OptionalInt;
 
 @RequiredArgsConstructor
 public class SlotDialogController {
-    private final SlotData slot;
+    private final SlotView slot;
     private final int positionMaxValue;
 
     private String newName;
@@ -39,11 +39,11 @@ public class SlotDialogController {
 
     @FXML
     void initialize() {
-        slotName.setText(slot.getName());
+        slotName.setText(slot.getName().getValueSafe());
         var spinnerValue = new IntegerSpinnerValueFactory(
                 1,
                 positionMaxValue,
-                slot.getPosition() + 1);
+                slot.getPosition().getValue() + 1);
         slotPosition.setValueFactory(spinnerValue);
     }
 
@@ -55,12 +55,12 @@ public class SlotDialogController {
     @FXML
     void onSave() {
         var checkName = slotName.getText();
-        if (checkName != null && !checkName.equals("") && !checkName.equals(slot.getName())) {
+        if (checkName != null && !checkName.equals("") && !checkName.equals(slot.getName().getValue())) {
             newName = checkName;
         }
 
         int checkPosition = slotPosition.getValue() - 1;
-        if (checkPosition != slot.getPosition()) {
+        if (checkPosition != slot.getPosition().get()) {
             newPosition = checkPosition;
         }
         closeWindow();

@@ -1,4 +1,4 @@
-package com.github.haseoo.taskmanager.controllers.views;
+package com.github.haseoo.taskmanager.oldcontrollers.views;
 
 import lombok.Value;
 
