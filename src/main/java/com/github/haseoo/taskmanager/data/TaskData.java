@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.BiFunction;
+import java.util.function.IntSupplier;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -26,7 +26,8 @@ public final class TaskData {
     @Setter
     private SlotData slot;
 
-    private final BiFunction<UUID, UUID, Integer> getPosition;
+    @Setter
+    private IntSupplier getPositionSupplier;
 
     private final AtomicReference<TagData> tag;
 
@@ -89,5 +90,9 @@ public final class TaskData {
 
     public void setTag(TagData tag) {
         this.tag.set(tag);
+    }
+
+    public int getPosition() {
+        return getPositionSupplier.getAsInt();
     }
 }
