@@ -1,4 +1,4 @@
-package utils;
+package com.github.haseoo.taskmanager.utilities;
 
 import lombok.AllArgsConstructor;
 

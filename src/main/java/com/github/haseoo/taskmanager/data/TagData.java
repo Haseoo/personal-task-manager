@@ -8,9 +8,9 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-import static lombok.AccessLevel.PRIVATE;
+import static lombok.AccessLevel.PUBLIC;
 
-@AllArgsConstructor(access = PRIVATE)
+@AllArgsConstructor(access = PUBLIC)
 public final class TagData {
     @Getter
     private final UUID id;
@@ -26,7 +26,7 @@ public final class TagData {
     }
 
     public void bindName(StringProperty name) {
-        this.name.bindBidirectional(name);
+        name.bindBidirectional(this.name);
     }
 
     public void unbindName(StringProperty name) {
@@ -47,5 +47,9 @@ public final class TagData {
 
     public void removeColorListener(ChangeListener<? super TagColorData> listener) {
         color.removeListener(listener);
+    }
+
+    public StringProperty nameProperty() {
+        return name;
     }
 }

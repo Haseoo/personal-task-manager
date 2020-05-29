@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
 
+import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_SLOT_NAME;
 import static lombok.AccessLevel.PRIVATE;
-import static utils.DefaultValues.DEFAULT_SLOT_NAME;
 
 @RequiredArgsConstructor(access = PRIVATE)
 public final class SlotData {

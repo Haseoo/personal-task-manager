@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.function.Consumer;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class Utilities {
+public final class Utilities {
     public static URL getResourceURL(String relativePath) {
         return Objects.requireNonNull(FXMain.class.getClassLoader().getResource(relativePath));
     }

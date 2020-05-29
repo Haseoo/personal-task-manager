@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 import lombok.Value;
 
+import static com.github.haseoo.taskmanager.utilities.Converters.JFXColorRangeToRGBRange;
 import static lombok.AccessLevel.PRIVATE;
-import static utils.Converters.JFXColorRangeToRGBRange;
 
 @Value
 @AllArgsConstructor(access = PRIVATE)

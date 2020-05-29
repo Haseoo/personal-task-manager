@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_LIST_NAME;
 import static lombok.AccessLevel.PRIVATE;
-import static utils.DefaultValues.DEFAULT_TASK_LIST_NAME;
 
 @AllArgsConstructor(access = PRIVATE)
 public final class TaskListData {

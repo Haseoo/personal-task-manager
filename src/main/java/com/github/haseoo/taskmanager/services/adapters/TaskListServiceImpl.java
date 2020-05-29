@@ -115,7 +115,7 @@ public class TaskListServiceImpl implements TaskListService {
     @Override
     public void removeTask(UUID id) {
         var task = getTaskById(id);
-        getSlotById(task.getId()).getTasks().remove(task);
+        getSlotById(task.getSlot().getId()).getTasks().remove(task);
     }
 
 

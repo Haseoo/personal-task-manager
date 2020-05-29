@@ -26,7 +26,7 @@ public class TaskList {
         return new TaskList(taskListData.getId(),
                 taskListData.getName(),
                 taskListData.getSlots().stream().map(Slot::form).collect(toList()),
-                new ArrayList<>(),
+                taskListData.getSlots().stream().flatMap(slot -> slot.getTasks().stream()).map(Task::form).collect(toList()),
                 new ArrayList<>());
     }
 }

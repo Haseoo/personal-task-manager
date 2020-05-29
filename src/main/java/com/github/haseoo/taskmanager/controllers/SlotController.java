@@ -38,6 +38,7 @@ public class SlotController {
     @FXML
     private void initialize() {
         currentSlot.bindName(slotLabel.textProperty());
+        jfxService.onSlotInitialization(currentSlot.getId(), slotVBox.getChildren());
     }
 
     @FXML
@@ -58,8 +59,8 @@ public class SlotController {
 
 
     @FXML
-    private void onAddCard() {
-
+    private void onAddCard() throws IOException {
+        jfxService.addNewTask(currentSlot.getId());
     }
 
     @FXML

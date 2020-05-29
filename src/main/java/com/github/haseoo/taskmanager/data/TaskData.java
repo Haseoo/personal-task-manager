@@ -1,35 +1,42 @@
 package com.github.haseoo.taskmanager.data;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import lombok.Builder;
+import javafx.beans.value.ChangeListener;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.IntSupplier;
+import java.util.function.Function;
 
+import static com.github.haseoo.taskmanager.utilities.Converters.LOCAL_DATE_STRING_CONVERTER;
+import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_NAME;
 import static lombok.AccessLevel.PRIVATE;
 
-@Builder(access = PRIVATE)
+@RequiredArgsConstructor(access = PRIVATE)
 public final class TaskData {
     private final UUID id;
     private final StringProperty name;
     private final ObjectProperty<LocalDate> dateFrom;
-    private final StringProperty dateFromString;
     private final ObjectProperty<LocalDate> dateTo;
-    private final StringProperty dateToString;
     private final StringProperty description;
     @Getter
     @Setter
     private SlotData slot;
 
     @Setter
-    private IntSupplier getPositionSupplier;
+    private Function<TaskData, Integer> positionSupplier;
 
-    private final AtomicReference<TagData> tag;
+    private final ObjectProperty<TagData> tag;
+
+    @Getter
+    private final List<SubTaskData> subTasks = new ArrayList<>();
 
 
     public UUID getId() {
@@ -45,19 +52,20 @@ public final class TaskData {
     }
 
     public void bindName(StringProperty name) {
-        this.name.bindBidirectional(name);
+        name.bindBidirectional(this.name);
     }
 
     public LocalDate getDateFrom() {
         return dateFrom.get();
     }
 
+
     public void setDateFrom(LocalDate dateFrom) {
         this.dateFrom.set(dateFrom);
     }
 
     public void bindDateFrom(StringProperty dateFromString) {
-        this.dateFromString.bindBidirectional(dateFromString);
+        dateFromString.bindBidirectional(dateFrom, LOCAL_DATE_STRING_CONVERTER);
     }
 
     public LocalDate getDateTo() {
@@ -69,8 +77,9 @@ public final class TaskData {
     }
 
     public void bindDateTo(StringProperty dateToString) {
-        this.dateToString.bindBidirectional(dateToString);
+        dateToString.bindBidirectional(dateTo, LOCAL_DATE_STRING_CONVERTER);
     }
+
 
     public String getDescription() {
         return description.getValueSafe();
@@ -92,7 +101,26 @@ public final class TaskData {
         this.tag.set(tag);
     }
 
+    public void addTagListener(ChangeListener<? super TagData> listener) {
+        tag.addListener(listener);
+    }
+
+    public void removeTagListener(ChangeListener<? super TagData> listener) {
+        tag.removeListener(listener);
+    }
+
     public int getPosition() {
-        return getPositionSupplier.getAsInt();
+        return positionSupplier.apply(this);
+    }
+
+    public static TaskData defaultInstance(SlotData slot) {
+        var data = new TaskData(UUID.randomUUID(),
+                new SimpleStringProperty(DEFAULT_TASK_NAME),
+                new SimpleObjectProperty<>(),
+                new SimpleObjectProperty<>(),
+                new SimpleStringProperty(),
+                new SimpleObjectProperty<>());
+        data.setSlot(slot);
+        return data;
     }
 }
