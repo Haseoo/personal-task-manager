@@ -136,7 +136,7 @@ public class TaskController {
         } else {
             jfxTagColor = tagColorToFfxColor(currentTask.getTag().getTagColor());
         }
-        jfxTagColor = Color.hsb(jfxTagColor.getHue(), jfxTagColor.getSaturation() / 3.5, jfxTagColor.getBrightness());
+        jfxTagColor = Color.hsb(jfxTagColor.getHue(), 0.25, 0.95);
         return TagColorData.newInstance(jfxTagColor);
     }
 

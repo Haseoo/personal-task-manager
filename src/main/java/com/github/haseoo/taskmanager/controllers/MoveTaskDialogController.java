@@ -56,7 +56,7 @@ public class MoveTaskDialogController {
         var userSlotInput = toSlot.getValue();
         var userPositionInput = position.getValue();
         if (!userSlotInput.getId().equals(task.getSlot().getId())) {
-            response = new Response(userSlotInput.getId(), userPositionInput);
+            response = new Response(userSlotInput.getId(), userPositionInput - 1);
         }
         closeWindow();
     }
@@ -66,11 +66,7 @@ public class MoveTaskDialogController {
     }
 
     private void updatePositionSpinner(Observable observable, SlotView oldVal, SlotView newVal) {
-        if (newVal.equals(task.getSlot())) {
-            position.setDisable(true);
-        } else {
-            position.setDisable(false);
-        }
+        position.setDisable(newVal.getId().equals(task.getSlot().getId()));
         var spinnerMaxVal = jfxService.getCardsInSlotCount(newVal.getId()) + 1;
         var spinnerOldVal = (position.getValue() != null) ? position.getValue() : spinnerMaxVal;
         var spinnerNewVal = Math.min(spinnerOldVal, spinnerMaxVal);
