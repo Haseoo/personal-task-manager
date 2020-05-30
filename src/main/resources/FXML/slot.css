@@ -29,10 +29,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);
 }
 
-.card:hover {
-    -fx-background-color: linear-gradient(from 10% 30% to 100% 100%, rgb(242, 252, 255), rgb(210, 242, 255));
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
-}
 
 .card:hover {
     -fx-cursor: hand;

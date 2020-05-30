@@ -63,10 +63,10 @@ public class TaskListServiceImpl implements TaskListService {
     @Override
     public void deleteTag(UUID id) {
         getTaskStream()
-                .filter(task -> task.getSlot() != null &&
-                        task.getSlot().getId().equals(id)
-                ).forEach(task -> task.setSlot(null));
-        taskList.getSlots().remove(getSlotById(id));
+                .filter(task -> task.getTag() != null &&
+                        task.getTag().getId().equals(id)
+                ).forEach(task -> task.setTag(null));
+        taskList.getTags().remove(getTagById(id));
     }
 
     @Override

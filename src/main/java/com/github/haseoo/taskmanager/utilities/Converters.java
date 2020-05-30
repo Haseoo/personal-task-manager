@@ -1,5 +1,7 @@
 package com.github.haseoo.taskmanager.utilities;
 
+import com.github.haseoo.taskmanager.data.TagColorData;
+import javafx.scene.paint.Color;
 import javafx.util.StringConverter;
 import lombok.AllArgsConstructor;
 
@@ -16,6 +18,16 @@ public final class Converters {
         return (int) (JFXColorComponent * COLOR_COMPONENT_MAX_VALUE);
     }
 
+    public static double RGBRangeTOJFXColorRange(int rgbRange) {
+        return (double) rgbRange / (double) COLOR_COMPONENT_MAX_VALUE;
+    }
+
+    public static Color tagColorToFfxColor(TagColorData tagColor) {
+        return Color.color(RGBRangeTOJFXColorRange(tagColor.getRed()),
+                RGBRangeTOJFXColorRange(tagColor.getGreen()),
+                RGBRangeTOJFXColorRange(tagColor.getBlue()));
+    }
+
     public static final StringConverter<LocalDate> LOCAL_DATE_STRING_CONVERTER = new StringConverter<LocalDate>() {
         @Override
         public String toString(LocalDate localDate) {
@@ -30,4 +42,8 @@ public final class Converters {
             throw new UnsupportedOperationException();
         }
     };
+
+    public static String colorStringNormalize(String hexColor) {
+        return hexColor.replace("0x", "#");
+    }
 }

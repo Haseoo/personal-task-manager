@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -27,6 +26,6 @@ public class TaskList {
                 taskListData.getName(),
                 taskListData.getSlots().stream().map(Slot::form).collect(toList()),
                 taskListData.getSlots().stream().flatMap(slot -> slot.getTasks().stream()).map(Task::form).collect(toList()),
-                new ArrayList<>());
+                taskListData.getTags().stream().map(Tag::from).collect(toList()));
     }
 }

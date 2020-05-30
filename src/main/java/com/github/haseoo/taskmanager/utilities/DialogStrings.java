@@ -12,4 +12,7 @@ public final class DialogStrings {
     public static final String SLOT_EDIT_WINDOW_TITLE_FORMAT = "Edit %s";
     public static final String TASK_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete task %s";
     public static final String TASK_MOVE_DIALOG_TITLE_FORMAT = "Move task %s";
+    public static final String ADD_TAG_DIALOG_TITLE = "Add tag";
+    public static final String EDIT_TAG_DIALOG_TITLE_FORMAT = "Edit tag %s";
+    public static final String TAG_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete tag %s";
 }

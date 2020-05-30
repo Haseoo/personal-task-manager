@@ -4,9 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.haseoo.taskmanager.controllers.MainWindowController;
 import com.github.haseoo.taskmanager.controllers.SlotController;
 import com.github.haseoo.taskmanager.controllers.TaskController;
-import com.github.haseoo.taskmanager.data.SlotData;
-import com.github.haseoo.taskmanager.data.TaskData;
-import com.github.haseoo.taskmanager.data.TaskListData;
+import com.github.haseoo.taskmanager.data.*;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
 import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import com.github.haseoo.taskmanager.utilities.URLs;
@@ -115,6 +113,32 @@ public class JFXServiceImpl {
 
     public int getCardsInSlotCount(UUID slotId) {
         return slotCards.get(slotId).size();
+    }
+
+    public void addTag(String name, TagColorData color) {
+        taskListService.addTag(TagData.newInstance(name, color));
+    }
+
+    public List<TagData> getTags() {
+        return taskListService.getTags();
+    }
+
+    public void updateTag(UUID id, String name, TagColorData color) {
+        var tag = taskListService.getTagById(id);
+        tag.setName(name);
+        tag.setTagColor(color);
+    }
+
+    public void removeTag(UUID id) {
+        taskListService.deleteTag(id);
+    }
+
+    public long getTagTaskCount(UUID tagId) {
+        return taskListService.getTasks()
+                .stream()
+                .filter(task -> task.getTag() != null &&
+                        task.getTag().getId().equals(tagId))
+                .count();
     }
 
 

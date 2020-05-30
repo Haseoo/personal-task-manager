@@ -1,6 +1,7 @@
 package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
+import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import com.github.haseoo.taskmanager.utilities.URLs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,8 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
+import static com.github.haseoo.taskmanager.utilities.Constants.TAG_WINDOW_TITLE;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_HEADER;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_TITLE;
+import static com.github.haseoo.taskmanager.utilities.Utilities.prepareWindow;
 import static com.github.haseoo.taskmanager.utilities.Utilities.textInputDialog;
 
 @RequiredArgsConstructor
@@ -59,7 +62,10 @@ public class MainWindowController {
     }
 
     @FXML
-    private void onTag() {
+    private void onTag() throws IOException {
+        prepareWindow(FxmlFilePaths.TAG_WINDOW,
+                TAG_WINDOW_TITLE,
+                new TagWindowController(jfxService));
 
     }
 

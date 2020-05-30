@@ -1,6 +1,8 @@
 package com.github.haseoo.taskmanager.data;
 
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import lombok.AllArgsConstructor;
@@ -8,9 +10,9 @@ import lombok.Getter;
 
 import java.util.UUID;
 
-import static lombok.AccessLevel.PUBLIC;
+import static lombok.AccessLevel.PRIVATE;
 
-@AllArgsConstructor(access = PUBLIC)
+@AllArgsConstructor(access = PRIVATE)
 public final class TagData {
     @Getter
     private final UUID id;
@@ -51,5 +53,9 @@ public final class TagData {
 
     public StringProperty nameProperty() {
         return name;
+    }
+
+    public static TagData newInstance(String tagName, TagColorData color) {
+        return new TagData(UUID.randomUUID(), new SimpleStringProperty(tagName), new SimpleObjectProperty<>(color));
     }
 }
