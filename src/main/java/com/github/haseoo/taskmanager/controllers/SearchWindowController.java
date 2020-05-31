@@ -2,6 +2,7 @@ package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.data.TaskData;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
+import com.github.haseoo.taskmanager.utilities.TableViewCallback;
 import com.github.haseoo.taskmanager.views.TagView;
 import com.github.haseoo.taskmanager.views.TaskStatusComboBox;
 import com.github.haseoo.taskmanager.views.TaskView;
@@ -63,6 +64,7 @@ public class SearchWindowController {
     @FXML
     private void initialize() {
         tagInput.getItems().addAll(jfxService.getTags().stream().map(TagView::from).collect(toList()));
+        resultTable.setRowFactory(new TableViewCallback(jfxService));
     }
 
     @FXML

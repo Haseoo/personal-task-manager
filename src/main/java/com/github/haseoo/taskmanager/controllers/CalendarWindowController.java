@@ -2,19 +2,19 @@ package com.github.haseoo.taskmanager.controllers;
 
 import com.github.haseoo.taskmanager.data.TaskData;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
-import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
+import com.github.haseoo.taskmanager.utilities.TableViewCallback;
 import com.github.haseoo.taskmanager.views.TaskView;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableView;
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 
 import java.time.LocalDate;
-import java.util.UUID;
 import java.util.function.Predicate;
 
-import static com.github.haseoo.taskmanager.utilities.Utilities.prepareWindow;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -34,16 +34,7 @@ public class CalendarWindowController {
     void initialize() {
         dateInput.valueProperty().addListener(this::onDateUpdate);
         type.valueProperty().addListener(this::onTypeUpdate);
-        resultTable.setRowFactory(tv -> {
-            TableRow<TaskView> row = new TableRow<>();
-            row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-                    TaskView rowData = row.getItem();
-                    loadTaskWindow(rowData.getId());
-                }
-            });
-            return row;
-        });
+        resultTable.setRowFactory(new TableViewCallback(jfxService));
     }
 
     @FXML
@@ -62,14 +53,6 @@ public class CalendarWindowController {
     private void onTypeUpdate(ObservableValue<? extends String> observableValue, String oldValue, String newValue) {
         updateTable();
 
-    }
-
-    @SneakyThrows
-    private void loadTaskWindow(UUID taskId) {
-        var selectedTask = jfxService.getTaskById(taskId);
-        prepareWindow(FxmlFilePaths.TASK_WINDOW,
-                selectedTask.getName(),
-                new TaskWindowController(selectedTask, jfxService));
     }
 
     private void updateTable() {
