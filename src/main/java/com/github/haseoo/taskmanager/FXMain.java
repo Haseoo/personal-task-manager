@@ -25,16 +25,21 @@ public class FXMain extends Application {
     public void start(Stage stage) throws IOException {
         var mainWindow = new FXMLLoader(getResourceURL(FxmlFilePaths.MAIN_WINDOW));
         //mainWindow.setController(new MainWindowController(this, TaskListView.DEFAULT_VALUE));
+        Thread.setDefaultUncaughtExceptionHandler(FXMain::handleUncaughtExceptions);
         TaskListService taskListService = new TaskListServiceImpl();
         JFXServiceImpl jfxService = new JFXServiceImpl(this, taskListService);
         mainWindow.setController(new MainWindowController(jfxService));
         Parent root = mainWindow.load();
-
-
         Scene scene = new Scene(root);
-
         stage.setTitle(APPLICATION_NAME);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private static void handleUncaughtExceptions(Thread thread, Throwable throwable) {
+        if (!(throwable instanceof IOException)) {
+            //reportProblem(throwable);
+        }
+        throwable.printStackTrace();
     }
 }

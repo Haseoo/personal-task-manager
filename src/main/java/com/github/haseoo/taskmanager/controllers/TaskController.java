@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -25,6 +26,7 @@ import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TAG_
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_MOVE_DIALOG_TITLE_FORMAT;
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
+import static javafx.scene.input.MouseButton.PRIMARY;
 
 @RequiredArgsConstructor
 public class TaskController {
@@ -89,6 +91,10 @@ public class TaskController {
         currentTask.addTagListener(tagDataChangeListener);
     }
 
+    public void updateCompleteness(String value) {
+        taskCompleteness.setText(value);
+    }
+
     @FXML
     private void onTaskMove() throws IOException {
         var controller = new MoveTaskDialogController(jfxService, currentTask);
@@ -112,8 +118,12 @@ public class TaskController {
     }
 
     @FXML
-    private void onClick() {
-        currentTask.setTag(jfxService.getTags().get(0));
+    private void onClick(MouseEvent ev) throws IOException {
+        if (ev.getButton().equals(PRIMARY)) {
+            prepareWindow(FxmlFilePaths.TASK_WINDOW,
+                    currentTask.getName(),
+                    new TaskWindowController(currentTask, jfxService));
+        }
     }
 
     @FXML

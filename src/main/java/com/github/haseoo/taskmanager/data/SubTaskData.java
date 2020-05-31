@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.AllArgsConstructor;
 
+import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_SUBSTASK_NAME;
 import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor(access = PRIVATE)
@@ -13,8 +14,8 @@ public final class SubTaskData {
     private final StringProperty name;
     private final BooleanProperty complete;
 
-    public static SubTaskData newInstance(String name, boolean complete) {
-        return new SubTaskData(new SimpleStringProperty(name), new SimpleBooleanProperty(complete));
+    public static SubTaskData newInstance() {
+        return new SubTaskData(new SimpleStringProperty(DEFAULT_SUBSTASK_NAME), new SimpleBooleanProperty());
     }
 
     public String getName() {
@@ -26,7 +27,7 @@ public final class SubTaskData {
     }
 
     public void bindName(StringProperty name) {
-        this.name.bindBidirectional(name);
+        name.bindBidirectional(this.name);
     }
 
     public boolean isComplete() {
@@ -38,6 +39,6 @@ public final class SubTaskData {
     }
 
     public void bindComplete(BooleanProperty complete) {
-        this.complete.bindBidirectional(complete);
+        complete.bindBidirectional(this.complete);
     }
 }

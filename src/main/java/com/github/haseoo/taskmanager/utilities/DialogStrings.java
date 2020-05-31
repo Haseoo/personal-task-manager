@@ -15,4 +15,6 @@ public final class DialogStrings {
     public static final String ADD_TAG_DIALOG_TITLE = "Add tag";
     public static final String EDIT_TAG_DIALOG_TITLE_FORMAT = "Edit tag %s";
     public static final String TAG_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete tag %s";
+    public static final String INVALID_TASK_DATE_PROMPT = "Task's date from is after task's date to.";
+    public static final String INVALID_TASK_NAME_PROMPT = "You've entered empty task name";
 }

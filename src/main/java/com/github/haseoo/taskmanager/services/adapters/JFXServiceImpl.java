@@ -103,6 +103,14 @@ public class JFXServiceImpl {
         taskListService.removeTask(taskId);
     }
 
+    public void moveTaskToPosition(UUID taskId, int position) {
+        var task = taskListService.getTaskById(taskId);
+        var card = tasks.get(taskId).getCurrentCard();
+        var slot = slotCards.get(task.getSlot().getId());
+        slot.remove(card);
+        slot.add(position, card);
+    }
+
     public void moveTaskToSlot(UUID taskId, UUID slotId, int position) {
         var task = taskListService.getTaskById(taskId);
         var card = tasks.get(taskId).getCurrentCard();
@@ -139,6 +147,19 @@ public class JFXServiceImpl {
                 .filter(task -> task.getTag() != null &&
                         task.getTag().getId().equals(tagId))
                 .count();
+    }
+
+    public void setTaskTag(UUID taskId, UUID tagId) {
+        var task = taskListService.getTaskById(taskId);
+        if (tagId != null) {
+            task.setTag(taskListService.getTagById(tagId));
+        } else {
+            task.setTag(null);
+        }
+    }
+
+    public void updateTaskCompletenessOnCard(UUID taskId, String value) {
+        tasks.get(taskId).updateCompleteness(value);
     }
 
 

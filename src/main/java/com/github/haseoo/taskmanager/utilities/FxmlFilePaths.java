@@ -13,4 +13,6 @@ public final class FxmlFilePaths {
     public static final String MOVE_TASK_DIALOG = "FXML/moveTask.fxml";
     public static final String TAG_WINDOW = "FXML/tagWindow.fxml";
     public static final String TAG_DIALOG = "FXML/tagDialog.fxml";
+    public static final String TASK_WINDOW = "FXML/taskWindow.fxml";
+    public static final String SUB_TASK = "FXML/subTask.fxml";
 }

@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.utilities;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.haseoo.taskmanager.FXMain;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,11 +12,18 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
 import java.util.function.Consumer;
+
+import static com.github.haseoo.taskmanager.utilities.URLs.REPORT_UNEXPECTED_EXCEPTION;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Utilities {
@@ -77,5 +85,37 @@ public final class Utilities {
 
     public static void deleteConfirmationDialog(String header, Runnable action) {
         confirmationDialog(header, "This operation is irreversible!", action);
+    }
+
+    public static void showUserInputAlert(String message) {
+        var alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Incorrect input");
+        alert.setHeaderText("You've entered incorrect data");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static String getStackTrace(Throwable t) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        t.printStackTrace(pw);
+        return sw.toString();
+    }
+
+    @SneakyThrows
+    public static void reportProblem(Throwable throwable) {
+        var mapper = new ObjectMapper();
+        String reportJSON = mapper.writeValueAsString(new Report(getStackTrace(throwable)));
+        URL url = new URL(REPORT_UNEXPECTED_EXCEPTION.getUrl());
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        connection.setRequestProperty("Content-Type", "application/json");
+        connection.setRequestProperty("Accept", "application/json");
+        OutputStreamWriter osw = new OutputStreamWriter(connection.getOutputStream());
+        osw.write(reportJSON);
+        osw.flush();
+        osw.close();
+        connection.getResponseCode();
     }
 }

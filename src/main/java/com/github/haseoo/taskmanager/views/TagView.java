@@ -25,7 +25,19 @@ public class TagView {
                 tagColorToFfxColor(tagData.getTagColor()));
     }
 
+    public static TagView from(TagData tagData) {
+        return new TagView(tagData.getId(),
+                tagData.getName(),
+                0,
+                tagColorToFfxColor(tagData.getTagColor()));
+    }
+
     public String getColorValue() {
         return color.toString();
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
