@@ -10,8 +10,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
-import static com.github.haseoo.taskmanager.utilities.Constants.CALENDAR_WINDOW_TITLE;
-import static com.github.haseoo.taskmanager.utilities.Constants.TAG_WINDOW_TITLE;
+import static com.github.haseoo.taskmanager.utilities.Constants.*;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_HEADER;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_TITLE;
 import static com.github.haseoo.taskmanager.utilities.Utilities.prepareWindow;
@@ -61,8 +60,10 @@ public class MainWindowController {
     }
 
     @FXML
-    private void onSearch() {
-
+    private void onSearch() throws IOException {
+        prepareWindow(FxmlFilePaths.SEARCH_WINDOW,
+                SEARCH_WINDOW_TITLE,
+                new SearchWindowController(jfxService));
     }
 
     @FXML

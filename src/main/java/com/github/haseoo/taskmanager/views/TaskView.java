@@ -1,6 +1,5 @@
 package com.github.haseoo.taskmanager.views;
 
-import com.github.haseoo.taskmanager.data.SubTaskData;
 import com.github.haseoo.taskmanager.data.TaskData;
 import lombok.AllArgsConstructor;
 import lombok.Value;
@@ -27,15 +26,10 @@ public class TaskView {
                 (taskData.getDateFrom() != null) ? taskData.getDateFrom().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) : "",
                 (taskData.getDateTo() != null) ? taskData.getDateTo().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) : "",
                 (taskData.getTag() != null) ? taskData.getTag().getName() : "",
-                getTaskCompleteness(taskData));
+                getTaskCompletenessString(taskData));
     }
 
-    private static String getTaskCompleteness(TaskData taskData) {
-        var taskCount = taskData.getSubTasks().size();
-        if (taskCount == 0) {
-            return "";
-        }
-        var completeTaskCount = taskData.getSubTasks().stream().filter(SubTaskData::isComplete).count();
-        return Double.toString(100.0 * (double) completeTaskCount / (double) taskCount);
+    private static String getTaskCompletenessString(TaskData taskData) {
+        return (Double.isNaN(taskData.getCompleteness()) ? "" : Double.toString(taskData.getCompleteness()));
     }
 }

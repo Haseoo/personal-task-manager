@@ -113,6 +113,12 @@ public final class TaskData {
         return positionSupplier.apply(this);
     }
 
+    public double getCompleteness() {
+        var taskCount = getSubTasks().size();
+        var completeTaskCount = getSubTasks().stream().filter(SubTaskData::isComplete).count();
+        return 100.0 * (double) completeTaskCount / (double) taskCount;
+    }
+
     public static TaskData defaultInstance(SlotData slot) {
         var data = new TaskData(UUID.randomUUID(),
                 new SimpleStringProperty(DEFAULT_TASK_NAME),
