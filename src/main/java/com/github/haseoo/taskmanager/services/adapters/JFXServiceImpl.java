@@ -18,8 +18,10 @@ import lombok.Setter;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.function.Predicate;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
+import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
 public class JFXServiceImpl {
@@ -158,8 +160,22 @@ public class JFXServiceImpl {
         }
     }
 
-    public void updateTaskCompletenessOnCard(UUID taskId, String value) {
-        tasks.get(taskId).updateCompleteness(value);
+    public void updateTaskCompletenessOnCard(UUID taskId, double value) {
+        String stringValue;
+        if (Double.isNaN(value)) {
+            stringValue = "";
+        } else {
+            stringValue = String.format("%.2f%%", 100.0 * value);
+        }
+        tasks.get(taskId).updateCompleteness(stringValue, value >= 1.0);
+    }
+
+    public List<TaskData> getTasksByCondition(Predicate<TaskData> condition) {
+        return taskListService.getTasks().stream().filter(condition).collect(toList());
+    }
+
+    public TaskData getTaskById(UUID id) {
+        return taskListService.getTaskById(id);
     }
 
 

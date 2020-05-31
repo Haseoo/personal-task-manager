@@ -91,8 +91,9 @@ public class TaskController {
         currentTask.addTagListener(tagDataChangeListener);
     }
 
-    public void updateCompleteness(String value) {
+    public void updateCompleteness(String value, boolean strikeThought) {
         taskCompleteness.setText(value);
+        taskLabel.setUnderline(strikeThought);
     }
 
     @FXML

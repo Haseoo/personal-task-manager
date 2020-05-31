@@ -8,6 +8,7 @@ import static lombok.AccessLevel.PRIVATE;
 public final class Constants {
     public static final int COLOR_COMPONENT_MAX_VALUE = 255;
     public static final String APPLICATION_NAME = "Personal task manager";
+    public static final String CALENDAR_WINDOW_TITLE = "Calendar view";
     public static final String TAG_WINDOW_TITLE = "Tags";
     public static final String DEFAULT_COLOR = "#4BA9EF";
     public static final String CELL_BG_COLOR_STYLE_FORMAT = "-fx-background-color: %s";

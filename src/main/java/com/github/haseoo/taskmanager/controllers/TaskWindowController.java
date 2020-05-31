@@ -109,7 +109,7 @@ public class TaskWindowController {
         task.setDescription(description);
         task.getSubTasks().clear();
         task.getSubTasks().addAll(subTasks);
-        jfxService.updateTaskCompletenessOnCard(task.getId(), getCompletenessString());
+        jfxService.updateTaskCompletenessOnCard(task.getId(), getCompleteness());
         closeWindow();
     }
 
@@ -148,14 +148,5 @@ public class TaskWindowController {
                 .filter(SubTaskController::isComplete)
                 .count();
         return completeSubtaskCount / subTaskCount;
-    }
-
-    private String getCompletenessString() {
-        double completeness = getCompleteness();
-        if (Double.isNaN(completeness)) {
-            return "";
-        } else {
-            return String.format("%.2f%%", 100.0 * completeness);
-        }
     }
 }
