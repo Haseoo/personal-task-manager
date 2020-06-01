@@ -1,6 +1,7 @@
 package com.github.haseoo.taskmanager;
 
 import com.github.haseoo.taskmanager.controllers.MainWindowController;
+import com.github.haseoo.taskmanager.services.adapters.FileServiceImpl;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
 import com.github.haseoo.taskmanager.services.adapters.TaskListServiceImpl;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
@@ -27,8 +28,9 @@ public class FXMain extends Application {
         //mainWindow.setController(new MainWindowController(this, TaskListView.DEFAULT_VALUE));
         Thread.setDefaultUncaughtExceptionHandler(FXMain::handleUncaughtExceptions);
         TaskListService taskListService = new TaskListServiceImpl();
-        JFXServiceImpl jfxService = new JFXServiceImpl(this, taskListService);
-        mainWindow.setController(new MainWindowController(jfxService));
+        var fileService = new FileServiceImpl();
+        var jfxService = new JFXServiceImpl(this, taskListService);
+        mainWindow.setController(new MainWindowController(jfxService, fileService));
         Parent root = mainWindow.load();
         Scene scene = new Scene(root);
         stage.setTitle(APPLICATION_NAME);

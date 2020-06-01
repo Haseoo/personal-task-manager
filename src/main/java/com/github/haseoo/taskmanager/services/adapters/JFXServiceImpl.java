@@ -1,10 +1,10 @@
 package com.github.haseoo.taskmanager.services.adapters;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.haseoo.taskmanager.controllers.MainWindowController;
 import com.github.haseoo.taskmanager.controllers.SlotController;
 import com.github.haseoo.taskmanager.controllers.TaskController;
 import com.github.haseoo.taskmanager.data.*;
+import com.github.haseoo.taskmanager.models.TaskList;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
 import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import com.github.haseoo.taskmanager.utilities.URLs;
@@ -37,10 +37,8 @@ public class JFXServiceImpl {
     @Setter
     private HBox slotHBox;
 
-    public void saveList() throws IOException {
-        var model = taskListService.prepareModels();
-        var mapper = new ObjectMapper();
-        System.out.println(mapper.writeValueAsString(model));
+    public TaskList getModel() {
+        return taskListService.prepareModels();
     }
 
     public void openUrl(URLs url) {

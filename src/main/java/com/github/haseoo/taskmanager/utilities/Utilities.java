@@ -95,6 +95,18 @@ public final class Utilities {
         alert.showAndWait();
     }
 
+    public static void showSavedInfo() {
+        new Alert(Alert.AlertType.INFORMATION, "File saved").showAndWait();
+    }
+
+    public static void showSavingError() {
+        var alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("File save failed");
+        alert.setHeaderText("An error occurred while saving a file");
+        alert.setContentText("Try again");
+        alert.showAndWait();
+    }
+
     public static String getStackTrace(Throwable t) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);

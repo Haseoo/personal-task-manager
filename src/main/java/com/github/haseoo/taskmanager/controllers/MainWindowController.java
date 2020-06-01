@@ -1,24 +1,26 @@
 package com.github.haseoo.taskmanager.controllers;
 
+import com.github.haseoo.taskmanager.services.adapters.FileServiceImpl;
 import com.github.haseoo.taskmanager.services.adapters.JFXServiceImpl;
 import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
 import com.github.haseoo.taskmanager.utilities.URLs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 
 import static com.github.haseoo.taskmanager.utilities.Constants.*;
-import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_HEADER;
-import static com.github.haseoo.taskmanager.utilities.DialogStrings.TASK_LIST_TITLE_EDIT_DIALOG_TITLE;
-import static com.github.haseoo.taskmanager.utilities.Utilities.prepareWindow;
-import static com.github.haseoo.taskmanager.utilities.Utilities.textInputDialog;
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.*;
+import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 
 @RequiredArgsConstructor
 public class MainWindowController {
     private final JFXServiceImpl jfxService;
+    private final FileServiceImpl fileService;
     @FXML
     private Label taskListTitle;
     @FXML
@@ -42,13 +44,36 @@ public class MainWindowController {
     }
 
     @FXML
-    private void onSave() throws IOException {
-        jfxService.saveList();
+    private void onSave() {
+        if (fileService.isOutputSaved()) {
+            try {
+                fileService.saveFile(jfxService.getModel());
+                showSavedInfo();
+            } catch (IOException e) {
+                showSavingError();
+                e.printStackTrace();
+            }
+        } else {
+            onExport();
+        }
     }
 
     @FXML
     private void onExport() {
-        System.out.println("EXPORT!");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle(SAVE_FILE_TITLE);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(SAVE_FILE_DESCRIPTION, SAVE_FILE_EXTENSION));
+        fileChooser.setInitialFileName(taskListTitle.getText());
+        var file = fileChooser.showSaveDialog((Stage) taskListTitle.getScene().getWindow());
+        if (file != null) {
+            try {
+                fileService.saveFileAs(file, jfxService.getModel());
+                showSavedInfo();
+            } catch (IOException e) {
+                showSavingError();
+                e.printStackTrace();
+            }
+        }
     }
 
     @FXML

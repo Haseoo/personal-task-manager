@@ -17,4 +17,7 @@ public final class DialogStrings {
     public static final String TAG_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT = "Are you sure do delete tag %s";
     public static final String INVALID_TASK_DATE_PROMPT = "Task's date from is after task's date to.";
     public static final String INVALID_TASK_NAME_PROMPT = "You've entered empty task name";
+    public static final String SAVE_FILE_TITLE = "Save task list as";
+    public static final String SAVE_FILE_DESCRIPTION = "Task list file";
+    public static final String SAVE_FILE_EXTENSION = "*.tsk";
 }
