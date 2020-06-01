@@ -49,6 +49,14 @@ public class JFXServiceImpl {
         return taskListService.getCurrentTaskList();
     }
 
+    public void newList() {
+        taskListService.loadNewList();
+        slotHBox.getChildren().clear();
+        slots.clear();
+        tasks.clear();
+        slotCards.clear();
+    }
+
     public void addSlot() throws IOException {
         var newSlot = SlotData.defaultInstance();
         var controller = new SlotController(this, newSlot);

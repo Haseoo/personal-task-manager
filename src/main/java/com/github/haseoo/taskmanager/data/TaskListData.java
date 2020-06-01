@@ -31,7 +31,7 @@ public final class TaskListData {
     }
 
     public void bindName(StringProperty name) {
-        this.name.bindBidirectional(name);
+        name.bindBidirectional(this.name);
     }
 
     public static TaskListData defaultNewInstance() {

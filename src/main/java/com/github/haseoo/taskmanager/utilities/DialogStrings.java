@@ -20,4 +20,6 @@ public final class DialogStrings {
     public static final String SAVE_FILE_TITLE = "Save task list as";
     public static final String SAVE_FILE_DESCRIPTION = "Task list file";
     public static final String SAVE_FILE_EXTENSION = "*.tsk";
+    public static final String NEW_LIST_CONFIRMATION = "Are you sure to create new list?";
+    public static final String LIST_OVERRIDE_TEXT = "All unsaved work will be lost";
 }

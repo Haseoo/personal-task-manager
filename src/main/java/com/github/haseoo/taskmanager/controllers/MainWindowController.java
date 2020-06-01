@@ -35,7 +35,10 @@ public class MainWindowController {
 
     @FXML
     private void onNew() {
-
+        confirmationDialog(NEW_LIST_CONFIRMATION, LIST_OVERRIDE_TEXT, () -> {
+            jfxService.newList();
+            jfxService.getCurrentTaskList().bindName(taskListTitle.textProperty());
+        });
     }
 
     @FXML
