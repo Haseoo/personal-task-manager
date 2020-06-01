@@ -4,6 +4,9 @@ import com.github.haseoo.taskmanager.controllers.MainWindowController;
 import com.github.haseoo.taskmanager.controllers.SlotController;
 import com.github.haseoo.taskmanager.controllers.TaskController;
 import com.github.haseoo.taskmanager.data.*;
+import com.github.haseoo.taskmanager.models.Slot;
+import com.github.haseoo.taskmanager.models.Tag;
+import com.github.haseoo.taskmanager.models.Task;
 import com.github.haseoo.taskmanager.models.TaskList;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
 import com.github.haseoo.taskmanager.utilities.FxmlFilePaths;
@@ -21,6 +24,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
+import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -49,6 +53,15 @@ public class JFXServiceImpl {
         return taskListService.getCurrentTaskList();
     }
 
+    public void loadFromModel(TaskList taskList) throws IOException {
+        validateIntegrity(taskList);
+        newList();
+        getCurrentTaskList().setName(taskList.getName());
+        loadTags(taskList);
+        loadSlots(taskList);
+        loadTasks(taskList);
+    }
+
     public void newList() {
         taskListService.loadNewList();
         slotHBox.getChildren().clear();
@@ -57,13 +70,9 @@ public class JFXServiceImpl {
         slotCards.clear();
     }
 
-    public void addSlot() throws IOException {
+    public void addNewSlot() throws IOException {
         var newSlot = SlotData.defaultInstance();
-        var controller = new SlotController(this, newSlot);
-        GridPane loadedPane = loadSlot(controller);
-        controller.setSlotNode(loadedPane);
-        putSlot(newSlot, controller, loadedPane);
-        newSlot.setPositionSupplier(this::getSlotPosition);
+        addSlot(newSlot);
     }
 
     public List<SlotData> getSlots() {
@@ -97,11 +106,7 @@ public class JFXServiceImpl {
     public void addNewTask(UUID slotId) throws IOException {
         var slot = taskListService.getSlotById(slotId);
         var task = TaskData.defaultInstance(slot);
-        var taskController = new TaskController(this, task);
-        GridPane card = loadCard(taskController);
-        taskController.setCurrentCard(card);
-        putNewCard(slot, task, taskController, card);
-        task.setPositionSupplier(this::getTaskPosition);
+        addTask(slot, task);
     }
 
     public void removeTask(UUID taskId) {
@@ -214,4 +219,72 @@ public class JFXServiceImpl {
         return loader.load();
     }
 
+    private void validateIntegrity(TaskList taskList) {
+        var taskSlotMap = taskList.getTasks().stream()
+                .collect(groupingBy(Task::getSlotId));
+        var taskTagMap = taskList.getTasks().stream()
+                .filter(task -> task.getTagId() != null)
+                .collect(groupingBy(Task::getTagId));
+        for (var entry : taskSlotMap.keySet()) {
+            if (taskList.getSlots().stream()
+                    .map(Slot::getId)
+                    .noneMatch(id -> id.equals(entry))) {
+                throw new AssertionError();
+            }
+        }
+        for (var entry : taskTagMap.keySet()) {
+            if (taskList.getTags().stream()
+                    .map(Tag::getId)
+                    .noneMatch(id -> id.equals(entry))) {
+                throw new AssertionError();
+            }
+        }
+    }
+
+    private void addSlot(SlotData slot) throws IOException {
+        var controller = new SlotController(this, slot);
+        GridPane loadedPane = loadSlot(controller);
+        controller.setSlotNode(loadedPane);
+        putSlot(slot, controller, loadedPane);
+        slot.setPositionSupplier(this::getSlotPosition);
+    }
+
+    private void addTask(SlotData slot, TaskData task) throws IOException {
+        var taskController = new TaskController(this, task);
+        GridPane card = loadCard(taskController);
+        taskController.setCurrentCard(card);
+        putNewCard(slot, task, taskController, card);
+        task.setPositionSupplier(this::getTaskPosition);
+    }
+
+    private void loadTags(TaskList taskList) {
+        taskList.getTags().stream().map(TagData::from).forEach(taskListService::addTag);
+    }
+
+    private void loadSlots(TaskList taskList) throws IOException {
+        taskList.getSlots().sort(Comparator.comparingInt(Slot::getPosition));
+        for (Slot slot : taskList.getSlots()) {
+            SlotData from = SlotData.from(slot);
+            addSlot(from);
+        }
+    }
+
+    private void loadTasks(TaskList taskList) throws IOException {
+        var taskSlotMap = taskList.getTasks().stream()
+                .collect(groupingBy(Task::getSlotId));
+        for (var entry : taskSlotMap.entrySet()) {
+            var taskModelList = taskSlotMap.get(entry.getKey());
+            taskModelList.sort(Comparator.comparingInt(Task::getPosition));
+            for (var taskModel : taskModelList) {
+                var taskData = TaskData.from(taskModel);
+                var slot = taskListService.getSlotById(taskModel.getSlotId());
+                addTask(slot, taskData);
+                taskData.setSlot(slot);
+                if (taskModel.getTagId() != null) {
+                    taskData.setTag(taskListService.getTagById(taskModel.getTagId()));
+                }
+                updateTaskCompletenessOnCard(taskData.getId(), taskData.getCompleteness() / 100.0);
+            }
+        }
+    }
 }

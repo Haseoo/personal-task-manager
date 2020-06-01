@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.data;
 
+import com.github.haseoo.taskmanager.models.Slot;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
@@ -49,5 +50,11 @@ public final class SlotData {
                 new SimpleStringProperty(DEFAULT_SLOT_NAME),
                 new ArrayList<>()
         );
+    }
+
+    public static SlotData from(Slot slot) {
+        return new SlotData(slot.getId(),
+                new SimpleStringProperty(slot.getName()),
+                new ArrayList<>());
     }
 }

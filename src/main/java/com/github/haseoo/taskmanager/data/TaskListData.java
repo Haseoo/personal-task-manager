@@ -7,15 +7,12 @@ import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_LIST_NAME;
 import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor(access = PRIVATE)
 public final class TaskListData {
-    @Getter
-    private final UUID id;
     private final StringProperty name;
     @Getter
     private final List<TagData> tags;
@@ -34,9 +31,8 @@ public final class TaskListData {
         name.bindBidirectional(this.name);
     }
 
-    public static TaskListData defaultNewInstance() {
-        return new TaskListData(UUID.randomUUID(),
-                new SimpleStringProperty(DEFAULT_TASK_LIST_NAME),
+    public static TaskListData newInstance() {
+        return new TaskListData(new SimpleStringProperty(DEFAULT_TASK_LIST_NAME),
                 new ArrayList<>(),
                 new ArrayList<>());
     }

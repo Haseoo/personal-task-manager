@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.data;
 
+import com.github.haseoo.taskmanager.models.Tag;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -57,5 +58,11 @@ public final class TagData {
 
     public static TagData newInstance(String tagName, TagColorData color) {
         return new TagData(UUID.randomUUID(), new SimpleStringProperty(tagName), new SimpleObjectProperty<>(color));
+    }
+
+    public static TagData from(Tag tag) {
+        return new TagData(tag.getId(),
+                new SimpleStringProperty(tag.getName()),
+                new SimpleObjectProperty<>(TagColorData.from(tag.getColor())));
     }
 }

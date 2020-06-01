@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.data;
 
+import com.github.haseoo.taskmanager.models.SubTask;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -40,5 +41,10 @@ public final class SubTaskData {
 
     public void bindComplete(BooleanProperty complete) {
         complete.bindBidirectional(this.complete);
+    }
+
+    public static SubTaskData from(SubTask subTask) {
+        return new SubTaskData(new SimpleStringProperty(subTask.getName()),
+                new SimpleBooleanProperty(subTask.isComplete()));
     }
 }

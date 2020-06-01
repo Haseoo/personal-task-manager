@@ -101,9 +101,17 @@ public final class Utilities {
 
     public static void showSavingError() {
         var alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("File save failed");
+        alert.setTitle("File saving failed");
         alert.setHeaderText("An error occurred while saving a file");
         alert.setContentText("Try again");
+        alert.showAndWait();
+    }
+
+    public static void showOpeningError() {
+        var alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("File opening failed");
+        alert.setHeaderText("An error occurred while opening a file");
+        alert.setContentText("It may not exit or it's corrupted");
         alert.showAndWait();
     }
 

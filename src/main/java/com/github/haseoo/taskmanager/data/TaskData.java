@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.data;
 
+import com.github.haseoo.taskmanager.models.Task;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -128,5 +129,16 @@ public final class TaskData {
                 new SimpleObjectProperty<>());
         data.setSlot(slot);
         return data;
+    }
+
+    public static TaskData from(Task task) {
+        var taskData = new TaskData(task.getId(),
+                new SimpleStringProperty(task.getName()),
+                new SimpleObjectProperty<>(task.getDateFrom()),
+                new SimpleObjectProperty<>(task.getDateTo()),
+                new SimpleStringProperty(task.getDescription()),
+                new SimpleObjectProperty<>());
+        task.getSubTasks().stream().map(SubTaskData::from).forEach(taskData.subTasks::add);
+        return taskData;
     }
 }

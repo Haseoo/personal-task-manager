@@ -27,7 +27,7 @@ public class TaskListServiceImpl implements TaskListService {
 
     @Override
     public void loadNewList() {
-        taskList = TaskListData.defaultNewInstance();
+        taskList = TaskListData.newInstance();
 
     }
 

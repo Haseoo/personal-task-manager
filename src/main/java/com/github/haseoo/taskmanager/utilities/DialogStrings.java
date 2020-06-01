@@ -18,6 +18,7 @@ public final class DialogStrings {
     public static final String INVALID_TASK_DATE_PROMPT = "Task's date from is after task's date to.";
     public static final String INVALID_TASK_NAME_PROMPT = "You've entered empty task name";
     public static final String SAVE_FILE_TITLE = "Save task list as";
+    public static final String OPEN_FILE_TITLE = "Open task list";
     public static final String SAVE_FILE_DESCRIPTION = "Task list file";
     public static final String SAVE_FILE_EXTENSION = "*.tsk";
     public static final String NEW_LIST_CONFIRMATION = "Are you sure to create new list?";

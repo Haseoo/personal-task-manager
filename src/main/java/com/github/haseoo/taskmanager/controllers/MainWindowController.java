@@ -43,7 +43,20 @@ public class MainWindowController {
 
     @FXML
     private void onOpen() {
-
+        var fileChooser = new FileChooser();
+        fileChooser.setTitle(OPEN_FILE_TITLE);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter(SAVE_FILE_DESCRIPTION, SAVE_FILE_EXTENSION));
+        var file = fileChooser.showOpenDialog((Stage) taskListTitle.getScene().getWindow());
+        if (file != null) {
+            try {
+                jfxService.loadFromModel(fileService.openTaskList(file));
+                jfxService.getCurrentTaskList().bindName(taskListTitle.textProperty());
+                fileService.setSavedOutput(file);
+            } catch (Exception | AssertionError e) {
+                e.printStackTrace();
+                showOpeningError();
+            }
+        }
     }
 
     @FXML
@@ -109,7 +122,7 @@ public class MainWindowController {
 
     @FXML
     private void onAddSlot() throws IOException {
-        jfxService.addSlot();
+        jfxService.addNewSlot();
     }
 
     @FXML

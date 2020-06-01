@@ -1,5 +1,6 @@
 package com.github.haseoo.taskmanager.data;
 
+import com.github.haseoo.taskmanager.models.TagColor;
 import javafx.scene.paint.Color;
 import lombok.AllArgsConstructor;
 import lombok.Value;
@@ -18,5 +19,9 @@ public class TagColorData {
         return new TagColorData(JFXColorRangeToRGBRange(color.getRed()),
                 JFXColorRangeToRGBRange(color.getBlue()),
                 JFXColorRangeToRGBRange(color.getGreen()));
+    }
+
+    public static TagColorData from(TagColor tagColor) {
+        return new TagColorData(tagColor.getRed(), tagColor.getBlue(), tagColor.getGreen());
     }
 }
