@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -38,6 +39,9 @@ public class SearchWindowController {
 
     @FXML
     private TextField taskNameInput;
+
+    @FXML
+    private TextField keyWordsInput;
 
     @FXML
     private TableView<TaskView> resultTable;
@@ -104,6 +108,25 @@ public class SearchWindowController {
         }
         if (dateTo != null) {
             predicate = predicate.and(task -> task.getDateTo() != null && task.getDateTo().equals(dateTo));
+        }
+        predicate = predicate.and(getKeyWordsPredicate());
+        return predicate;
+    }
+
+    private Predicate<TaskData> getKeyWordsPredicate() {
+        var keyWords = keyWordsInput.getText();
+        if (keyWords.equals("")) {
+            return task -> true;
+        }
+        var keyWordList = Arrays.stream(keyWords.split(";"))
+                .filter(keyWord -> !keyWord.equals(""))
+                .collect(toList());
+        if (keyWordList.isEmpty()) {
+            return task -> true;
+        }
+        Predicate<TaskData> predicate = task -> false;
+        for (var keyWord : keyWordList) {
+            predicate = predicate.or(task -> task.getKeyWords().contains(keyWord));
         }
         return predicate;
     }

@@ -38,6 +38,8 @@ public final class TaskData {
 
     @Getter
     private final List<SubTaskData> subTasks = new ArrayList<>();
+    @Getter
+    private final List<String> keyWords = new ArrayList<>();
 
 
     public UUID getId() {
@@ -139,6 +141,7 @@ public final class TaskData {
                 new SimpleStringProperty(task.getDescription()),
                 new SimpleObjectProperty<>());
         task.getSubTasks().stream().map(SubTaskData::from).forEach(taskData.subTasks::add);
+        taskData.getKeyWords().addAll(task.getKeyWords());
         return taskData;
     }
 }

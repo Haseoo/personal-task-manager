@@ -38,6 +38,7 @@ public class MainWindowController {
         confirmationDialog(NEW_LIST_CONFIRMATION, LIST_OVERRIDE_TEXT, () -> {
             jfxService.newList();
             jfxService.getCurrentTaskList().bindName(taskListTitle.textProperty());
+            fileService.reset();
         });
     }
 

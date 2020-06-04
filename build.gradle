@@ -40,7 +40,7 @@ sourceSets {
 def currentOS = org.gradle.internal.os.OperatingSystem.current()
 def platform
 if (currentOS.isWindows()) {
-    platform = 'linux'
+    platform = 'win'
 } else if (currentOS.isLinux()) {
     platform = 'linux'
 } else if (currentOS.isMacOsX()) {

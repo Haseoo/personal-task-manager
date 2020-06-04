@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,6 +23,7 @@ import static com.github.haseoo.taskmanager.utilities.DialogStrings.INVALID_TASK
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.INVALID_TASK_NAME_PROMPT;
 import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
 import static com.github.haseoo.taskmanager.utilities.Utilities.showUserInputAlert;
+import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -47,6 +49,8 @@ public class TaskWindowController {
     private TextArea descriptionInput;
     @FXML
     private VBox subTaskVBox;
+    @FXML
+    private TextField keyWordsInput;
 
     @FXML
     private void initialize() throws IOException {
@@ -64,6 +68,7 @@ public class TaskWindowController {
         for (var subTask : task.getSubTasks()) {
             loadSubTask(subTask);
         }
+        keyWordsInput.setText(String.join(";", task.getKeyWords()));
     }
 
     @FXML
@@ -109,6 +114,8 @@ public class TaskWindowController {
         task.setDescription(description);
         task.getSubTasks().clear();
         task.getSubTasks().addAll(subTasks);
+        task.getKeyWords().clear();
+        task.getKeyWords().addAll(getKeyWordsInput());
         jfxService.updateTaskCompletenessOnCard(task.getId(), getCompleteness());
         closeWindow();
     }
@@ -148,5 +155,15 @@ public class TaskWindowController {
                 .filter(SubTaskController::isComplete)
                 .count();
         return completeSubtaskCount / subTaskCount;
+    }
+
+    private List<String> getKeyWordsInput() {
+        var keyWordsString = keyWordsInput.getText();
+        if (keyWordsString == null || keyWordsString.equals("")) {
+            return emptyList();
+        }
+        return Arrays.stream(keyWordsString.split(";"))
+                .filter(keyWord -> !keyWord.equals(""))
+                .collect(toList());
     }
 }

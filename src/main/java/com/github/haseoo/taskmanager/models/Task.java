@@ -26,6 +26,7 @@ public class Task {
     private UUID tagId;
 
     private List<SubTask> subTasks;
+    private List<String> keyWords;
 
     public static Task form(TaskData taskData) {
         return new Task(taskData.getId(),
@@ -36,6 +37,7 @@ public class Task {
                 taskData.getPosition(),
                 taskData.getSlot().getId(),
                 (taskData.getTag() != null) ? taskData.getTag().getId() : null,
-                taskData.getSubTasks().stream().map(SubTask::from).collect(toList()));
+                taskData.getSubTasks().stream().map(SubTask::from).collect(toList()),
+                taskData.getKeyWords());
     }
 }
