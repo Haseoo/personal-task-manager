@@ -18,6 +18,8 @@ public final class TaskListData {
     private final List<TagData> tags;
     @Getter
     private final List<SlotData> slots;
+    @Getter
+    private final List<TaskTemplateData> taskTemplates;
 
     public String getName() {
         return name.getValueSafe();
@@ -33,6 +35,7 @@ public final class TaskListData {
 
     public static TaskListData newInstance() {
         return new TaskListData(new SimpleStringProperty(DEFAULT_TASK_LIST_NAME),
+                new ArrayList<>(),
                 new ArrayList<>(),
                 new ArrayList<>());
     }

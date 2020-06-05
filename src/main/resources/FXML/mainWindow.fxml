@@ -112,6 +112,18 @@
                                 </ImageView>
                             </graphic>
                         </Button>
+                  <Button mnemonicParsing="false" onAction="#onTemplate" styleClass="menuButton">
+                     <tooltip>
+                        <Tooltip styleClass="menuButtonTT" text="Task templates" />
+                     </tooltip>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/template.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                         <Button mnemonicParsing="false" onAction="#onInfo" styleClass="menuButton">
                             <tooltip>
                                 <Tooltip styleClass="menuButtonTT" text="Info and help" />

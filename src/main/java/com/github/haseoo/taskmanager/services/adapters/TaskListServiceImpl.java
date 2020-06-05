@@ -1,9 +1,6 @@
 package com.github.haseoo.taskmanager.services.adapters;
 
-import com.github.haseoo.taskmanager.data.SlotData;
-import com.github.haseoo.taskmanager.data.TagData;
-import com.github.haseoo.taskmanager.data.TaskData;
-import com.github.haseoo.taskmanager.data.TaskListData;
+import com.github.haseoo.taskmanager.data.*;
 import com.github.haseoo.taskmanager.models.TaskList;
 import com.github.haseoo.taskmanager.services.ports.TaskListService;
 
@@ -127,6 +124,30 @@ public class TaskListServiceImpl implements TaskListService {
         oldSlot.getTasks().remove(task);
         newSlot.getTasks().add(position, task);
         task.setSlot(newSlot);
+    }
+
+    @Override
+    public List<TaskTemplateData> getTaskTemplates() {
+        return taskList.getTaskTemplates();
+    }
+
+    @Override
+    public TaskTemplateData getTemplateById(UUID id) {
+        return getTaskTemplates().stream()
+                .filter(taskTemplate -> taskTemplate.getId().equals(id))
+                .findAny()
+                .orElseThrow(AssertionError::new);
+    }
+
+    @Override
+    public void addTaskTemplate(TaskTemplateData taskTemplate) {
+        taskList.getTaskTemplates().add(taskTemplate);
+    }
+
+    @Override
+    public void removeTaskTemplate(UUID id) {
+        var template = getTemplateById(id);
+        getTaskTemplates().remove(template);
     }
 
 

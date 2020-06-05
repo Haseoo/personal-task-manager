@@ -23,4 +23,5 @@ public final class DialogStrings {
     public static final String SAVE_FILE_EXTENSION = "*.tsk";
     public static final String NEW_LIST_CONFIRMATION = "Are you sure to create new list?";
     public static final String LIST_OVERRIDE_TEXT = "All unsaved work will be lost";
+    public static final String TASK_TEMPLATE_ADD_SUBTASK_TEXT = "Enter subtask name";
 }

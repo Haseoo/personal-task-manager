@@ -1,10 +1,7 @@
 package com.github.haseoo.taskmanager.services.ports;
 
 
-import com.github.haseoo.taskmanager.data.SlotData;
-import com.github.haseoo.taskmanager.data.TagData;
-import com.github.haseoo.taskmanager.data.TaskData;
-import com.github.haseoo.taskmanager.data.TaskListData;
+import com.github.haseoo.taskmanager.data.*;
 import com.github.haseoo.taskmanager.models.TaskList;
 
 import java.util.List;
@@ -44,4 +41,12 @@ public interface TaskListService {
     void removeTask(UUID id);
 
     void moveTask(int position, UUID taskId, UUID slotId);
+
+    List<TaskTemplateData> getTaskTemplates();
+
+    TaskTemplateData getTemplateById(UUID id);
+
+    void addTaskTemplate(TaskTemplateData taskTemplate);
+
+    void removeTaskTemplate(UUID id);
 }

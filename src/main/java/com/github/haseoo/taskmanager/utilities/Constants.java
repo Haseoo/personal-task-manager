@@ -17,4 +17,5 @@ public final class Constants {
     public static final String CARD_STYLE = "-fx-background-color: rgba(255, 255, 255, 1);-fx-background-radius: 5;-fx-border-style: solid;-fx-border-width: 1px;-fx-border-color: gray;-fx-background-radius: 10;-fx-border-radius: 10;-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);";
     public static final String HOVER_CARD_STYLE_FORMAT = CARD_STYLE + "-fx-background-color: linear-gradient(from 0%% 30%% to 100%% 100%%, white, rgb(%s, %s, %s));-fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);";
     public static final String CARD_TITLE_STYLE_FORMAT = "-fx-font-size: 14px;-fx-font-weight: bold;-fx-text-fill: rgb(%s, %s, %s);";
+    public static final String TASK_TEMPLATES_WINDOW_TITLE = "Task templates";
 }

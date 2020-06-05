@@ -10,3 +10,4 @@ edit- https://www.flaticon.com/free-icon/pen_1250925
 remove- https://www.flaticon.com/free-icon/cancel_44315
 forward- https://www.flaticon.com/free-icon/fast-forward_2413632
 sucess- https://www.flaticon.com/free-icon/check_845646
+template- https://www.flaticon.com/free-icon/template_2601295

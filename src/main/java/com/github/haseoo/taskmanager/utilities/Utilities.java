@@ -20,10 +20,14 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 
 import static com.github.haseoo.taskmanager.utilities.URLs.REPORT_UNEXPECTED_EXCEPTION;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class Utilities {
@@ -137,5 +141,18 @@ public final class Utilities {
         osw.flush();
         osw.close();
         connection.getResponseCode();
+    }
+
+    public static List<String> parseKeyWordString(String keyWordsString) {
+        if (keyWordsString == null || keyWordsString.equals("")) {
+            return emptyList();
+        }
+        return Arrays.stream(keyWordsString.split(";"))
+                .filter(keyWord -> !keyWord.equals(""))
+                .collect(toList());
+    }
+
+    public static String joinKeyWordsToString(List<String> keyWords) {
+        return String.join(";", keyWords);
     }
 }

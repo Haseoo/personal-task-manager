@@ -15,15 +15,12 @@ import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.INVALID_TASK_DATE_PROMPT;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.INVALID_TASK_NAME_PROMPT;
-import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
-import static com.github.haseoo.taskmanager.utilities.Utilities.showUserInputAlert;
-import static java.util.Collections.emptyList;
+import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 import static java.util.stream.Collectors.toList;
 
 @RequiredArgsConstructor
@@ -68,7 +65,7 @@ public class TaskWindowController {
         for (var subTask : task.getSubTasks()) {
             loadSubTask(subTask);
         }
-        keyWordsInput.setText(String.join(";", task.getKeyWords()));
+        keyWordsInput.setText(joinKeyWordsToString(task.getKeyWords()));
     }
 
     @FXML
@@ -115,7 +112,7 @@ public class TaskWindowController {
         task.getSubTasks().clear();
         task.getSubTasks().addAll(subTasks);
         task.getKeyWords().clear();
-        task.getKeyWords().addAll(getKeyWordsInput());
+        task.getKeyWords().addAll(parseKeyWordString(keyWordsInput.getText()));
         jfxService.updateTaskCompletenessOnCard(task.getId(), getCompleteness());
         closeWindow();
     }
@@ -155,15 +152,5 @@ public class TaskWindowController {
                 .filter(SubTaskController::isComplete)
                 .count();
         return completeSubtaskCount / subTaskCount;
-    }
-
-    private List<String> getKeyWordsInput() {
-        var keyWordsString = keyWordsInput.getText();
-        if (keyWordsString == null || keyWordsString.equals("")) {
-            return emptyList();
-        }
-        return Arrays.stream(keyWordsString.split(";"))
-                .filter(keyWord -> !keyWord.equals(""))
-                .collect(toList());
     }
 }

@@ -60,6 +60,7 @@ public class JFXServiceImpl {
         loadTags(taskList);
         loadSlots(taskList);
         loadTasks(taskList);
+        loadTemplates(taskList);
     }
 
     public void newList() {
@@ -189,6 +190,22 @@ public class JFXServiceImpl {
         return taskListService.getTaskById(id);
     }
 
+    public List<TaskTemplateData> getTaskTemplates() {
+        return taskListService.getTaskTemplates();
+    }
+
+    public TaskTemplateData getTemplateById(UUID id) {
+        return taskListService.getTemplateById(id);
+    }
+
+    public void addTaskTemplate(TaskTemplateData taskTemplate) {
+        taskListService.addTaskTemplate(taskTemplate);
+    }
+
+    public void removeTaskTemplate(UUID id) {
+        taskListService.removeTaskTemplate(id);
+    }
+
 
     private int getTaskPosition(TaskData task) {
         var taskController = tasks.get(task.getId());
@@ -285,6 +302,13 @@ public class JFXServiceImpl {
                 }
                 updateTaskCompletenessOnCard(taskData.getId(), taskData.getCompleteness() / 100.0);
             }
+        }
+    }
+
+    private void loadTemplates(TaskList taskList) {
+        var templates = taskList.getTemplates().stream().map(TaskTemplateData::from).collect(toList());
+        for (var template : templates) {
+            addTaskTemplate(template);
         }
     }
 }

@@ -127,10 +127,16 @@ public class MainWindowController {
     }
 
     @FXML
-    void onTitleEdit() {
+    private void onTitleEdit() {
         textInputDialog(taskListTitle.getText(),
                 TASK_LIST_TITLE_EDIT_DIALOG_TITLE,
                 TASK_LIST_TITLE_EDIT_DIALOG_HEADER,
                 name -> jfxService.getCurrentTaskList().setName(name));
+    }
+
+    @FXML
+    private void onTemplate() throws IOException {
+        var controller = new TaskTemplateWindowController(jfxService);
+        prepareWindow(FxmlFilePaths.TASK_TEMPLATE_WINDOW, TASK_TEMPLATES_WINDOW_TITLE, controller);
     }
 }
