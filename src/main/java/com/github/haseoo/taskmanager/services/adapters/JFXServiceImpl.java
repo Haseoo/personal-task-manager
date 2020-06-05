@@ -18,6 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.SneakyThrows;
 
 import java.io.IOException;
 import java.util.*;
@@ -108,6 +109,15 @@ public class JFXServiceImpl {
         var slot = taskListService.getSlotById(slotId);
         var task = TaskData.defaultInstance(slot);
         addTask(slot, task);
+    }
+
+    @SneakyThrows
+    public void addNewTask(UUID slotId, UUID templateId) {
+        var slot = taskListService.getSlotById(slotId);
+        var template = taskListService.getTemplateById(templateId);
+        var task = TaskData.from(template, slot);
+        addTask(slot, task);
+        updateTaskCompletenessOnCard(task.getId(), task.getCompleteness());
     }
 
     public void removeTask(UUID taskId) {

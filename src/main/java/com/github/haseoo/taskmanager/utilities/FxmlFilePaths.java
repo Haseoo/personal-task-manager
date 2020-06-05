@@ -18,5 +18,6 @@ public final class FxmlFilePaths {
     public static final String CALENDAR_WINDOW = "FXML/calendar.fxml";
     public static final String SEARCH_WINDOW = "FXML/search.fxml";
     public static final String TASK_TEMPLATE_WINDOW = "FXML/taskTemplatesWindow.fxml";
-    public static final String TASK_TEMPLATE_DIALOG = "FXML/taskTemplate.fxml";
+    public static final String TASK_TEMPLATE = "FXML/taskTemplate.fxml";
+    public static final String TASK_TEMPLATE_DIALOG = "FXML/taskTemplateDialog.fxml";
 }

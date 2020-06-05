@@ -2,6 +2,7 @@ package com.github.haseoo.taskmanager.services.adapters;
 
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.github.haseoo.taskmanager.models.TaskList;
 import lombok.Setter;
 
@@ -25,11 +26,13 @@ public class FileServiceImpl {
 
     public void saveFile(TaskList data) throws IOException {
         var mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         mapper.writer(new DefaultPrettyPrinter()).writeValue(Objects.requireNonNull(savedOutput), data);
     }
 
     public TaskList openTaskList(File input) throws IOException {
         var mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         return mapper.readValue(input, TaskList.class);
 
     }

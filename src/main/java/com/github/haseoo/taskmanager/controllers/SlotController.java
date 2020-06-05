@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import lombok.Getter;
@@ -16,8 +17,8 @@ import lombok.Setter;
 
 import java.io.IOException;
 
-import static com.github.haseoo.taskmanager.utilities.DialogStrings.SLOT_DELETE_CONFIRMATION_DIALOG_PROMPT_FORMAT;
-import static com.github.haseoo.taskmanager.utilities.DialogStrings.SLOT_EDIT_WINDOW_TITLE_FORMAT;
+import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_TEMPLATE_NAME;
+import static com.github.haseoo.taskmanager.utilities.DialogStrings.*;
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED;
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.NEVER;
@@ -62,8 +63,18 @@ public class SlotController {
 
 
     @FXML
-    private void onAddCard() throws IOException {
-        jfxService.addNewTask(currentSlot.getId());
+    private void onAddCard(MouseEvent event) throws IOException {
+        if (event.isShiftDown()) {
+            var controller = new TaskTemplateDialogController(jfxService.getTaskTemplates());
+            var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.TASK_TEMPLATE_DIALOG));
+            loader.setController(controller);
+            prepareDialog(loader.load(),
+                    TASK_TEMPLATE_SELECTOR_DIALOG_TITLE)
+                    .showAndWait();
+            controller.getResponse().ifPresent(response -> jfxService.addNewTask(currentSlot.getId(), response));
+        } else {
+            jfxService.addNewTask(currentSlot.getId());
+        }
     }
 
     @FXML

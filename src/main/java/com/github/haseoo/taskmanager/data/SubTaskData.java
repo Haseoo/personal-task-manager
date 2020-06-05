@@ -19,6 +19,10 @@ public final class SubTaskData {
         return new SubTaskData(new SimpleStringProperty(DEFAULT_SUBSTASK_NAME), new SimpleBooleanProperty());
     }
 
+    public static SubTaskData newInstance(String name) {
+        return new SubTaskData(new SimpleStringProperty(name), new SimpleBooleanProperty());
+    }
+
     public String getName() {
         return name.getValueSafe();
     }

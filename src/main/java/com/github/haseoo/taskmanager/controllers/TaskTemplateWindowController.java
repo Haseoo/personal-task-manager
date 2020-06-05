@@ -78,7 +78,7 @@ public class TaskTemplateWindowController {
 
     private TaskTemplateController loadDialog(TaskTemplateData taskTemplateData) throws IOException {
         var controller = new TaskTemplateController(taskTemplateData);
-        var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.TASK_TEMPLATE_DIALOG));
+        var loader = new FXMLLoader(getResourceURL(FxmlFilePaths.TASK_TEMPLATE));
         loader.setController(controller);
         prepareDialog(loader.load(),
                 DEFAULT_TASK_TEMPLATE_NAME)

@@ -18,6 +18,7 @@ import java.util.function.Function;
 
 import static com.github.haseoo.taskmanager.utilities.Converters.LOCAL_DATE_STRING_CONVERTER;
 import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_NAME;
+import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
 @RequiredArgsConstructor(access = PRIVATE)
@@ -131,6 +132,25 @@ public final class TaskData {
                 new SimpleObjectProperty<>());
         data.setSlot(slot);
         return data;
+    }
+
+    public static TaskData from(TaskTemplateData templateData, SlotData slot) {
+        var beginDate = (templateData.isHasDuration()) ? LocalDate.now() : null;
+        var endDate = ((templateData.isHasDuration()))
+                ? LocalDate.now().plusDays(templateData.getDuration()) : null;
+        var task =  new TaskData(UUID.randomUUID(),
+                new SimpleStringProperty(templateData.getTaskName()),
+                new SimpleObjectProperty<>(beginDate),
+                new SimpleObjectProperty<>(endDate),
+                new SimpleStringProperty(),
+                new SimpleObjectProperty<>());
+        task.getKeyWords().addAll(templateData.getKeyWords());
+        var subTasks =templateData.getSubTaskNames().stream()
+                .map(SubTaskData::newInstance)
+                .collect(toList());
+        task.getSubTasks().addAll(subTasks);
+        task.setSlot(slot);
+        return task;
     }
 
     public static TaskData from(Task task) {
