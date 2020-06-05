@@ -1,104 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Text?>
-
-<GridPane fx:id="taskScrollPane" alignment="TOP_RIGHT" styleClass="slot" stylesheets="@slot.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="taskScrollPane" alignment="TOP_RIGHT" styleClass="slot" stylesheets="@slot.css"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" />
+        <ColumnConstraints hgrow="SOMETIMES"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints valignment="CENTER" vgrow="SOMETIMES" />
-        <RowConstraints vgrow="ALWAYS" />
+        <RowConstraints valignment="CENTER" vgrow="SOMETIMES"/>
+        <RowConstraints vgrow="ALWAYS"/>
     </rowConstraints>
     <children>
-        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="slotHeader" GridPane.halignment="RIGHT">
+        <GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="slotHeader"
+                  GridPane.halignment="RIGHT">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-                <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="NEVER" maxWidth="90.0" minWidth="90.0" prefWidth="90.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+                <ColumnConstraints fillWidth="false" halignment="LEFT" hgrow="NEVER" maxWidth="90.0" minWidth="90.0"
+                                   prefWidth="90.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints valignment="CENTER" vgrow="ALWAYS" />
+                <RowConstraints valignment="CENTER" vgrow="ALWAYS"/>
             </rowConstraints>
             <children>
-                <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" snapToPixel="false" GridPane.columnIndex="1" GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
+                <HBox alignment="TOP_RIGHT" nodeOrientation="LEFT_TO_RIGHT" snapToPixel="false" GridPane.columnIndex="1"
+                      GridPane.hgrow="NEVER" GridPane.vgrow="NEVER">
                     <children>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#onAddCard" prefHeight="30.0" prefWidth="30.0" styleClass="slotBtn">
+                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0"
+                                mnemonicParsing="false" onMouseClicked="#onAddCard" prefHeight="30.0" prefWidth="30.0"
+                                styleClass="slotBtn">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@icons/add.png" />
+                                        <Image url="@icons/add.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
                             <tooltip>
-                                <Tooltip styleClass="buttonTT" text="Add new task" />
+                                <Tooltip styleClass="buttonTT" text="Add new task"/>
                             </tooltip>
                         </Button>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onSlotEdit" prefHeight="30.0" prefWidth="30.0" styleClass="slotBtn">
+                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0"
+                                mnemonicParsing="false" onAction="#onSlotEdit" prefHeight="30.0" prefWidth="30.0"
+                                styleClass="slotBtn">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@icons/editBlur.png" />
+                                        <Image url="@icons/editBlur.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
                             <tooltip>
-                                <Tooltip styleClass="buttonTT" text="Edit slot" />
+                                <Tooltip styleClass="buttonTT" text="Edit slot"/>
                             </tooltip>
                         </Button>
-                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onSlotDelete" prefHeight="30.0" prefWidth="30.0" styleClass="slotBtn">
+                        <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0"
+                                mnemonicParsing="false" onAction="#onSlotDelete" prefHeight="30.0" prefWidth="30.0"
+                                styleClass="slotBtn">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@icons/remove.png" />
+                                        <Image url="@icons/remove.png"/>
                                     </image>
                                 </ImageView>
                             </graphic>
                             <tooltip>
-                                <Tooltip styleClass="buttonTT" text="Remove slot" />
+                                <Tooltip styleClass="buttonTT" text="Remove slot"/>
                             </tooltip>
                         </Button>
                     </children>
                     <GridPane.margin>
-                        <Insets />
+                        <Insets/>
                     </GridPane.margin>
                 </HBox>
                 <Text fx:id="slotLabel" strokeWidth="0.0" styleClass="slotLabel" wrappingWidth="160.0">
                     <stroke>
                         <LinearGradient endX="1.0" endY="1.0" startX="0.4274809178505235" startY="0.41603055619101487">
                             <stops>
-                                <Stop color="#390909" />
-                                <Stop color="WHITE" offset="1.0" />
+                                <Stop color="#390909"/>
+                                <Stop color="WHITE" offset="1.0"/>
                             </stops>
                         </LinearGradient>
                     </stroke>
                     <GridPane.margin>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets left="5.0" right="5.0"/>
                     </GridPane.margin>
                 </Text>
             </children>
             <GridPane.margin>
-                <Insets />
+                <Insets/>
             </GridPane.margin>
         </GridPane>
-        <ScrollPane fx:id="taskListScrollPane" fitToWidth="true" hbarPolicy="NEVER" onMouseEntered="#showScrollBar" onMouseExited="#hideScrollBar" styleClass="slotScroll" vbarPolicy="NEVER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+        <ScrollPane fx:id="taskListScrollPane" fitToWidth="true" hbarPolicy="NEVER" onMouseEntered="#showScrollBar"
+                    onMouseExited="#hideScrollBar" styleClass="slotScroll" vbarPolicy="NEVER"
+                    GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
             <content>
                 <VBox fx:id="slotVBox" alignment="TOP_CENTER" spacing="7.0">
                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                     </padding>
                 </VBox>
             </content>

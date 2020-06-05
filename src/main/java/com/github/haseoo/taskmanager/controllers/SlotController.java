@@ -17,7 +17,6 @@ import lombok.Setter;
 
 import java.io.IOException;
 
-import static com.github.haseoo.taskmanager.utilities.DefaultValues.DEFAULT_TASK_TEMPLATE_NAME;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.*;
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 import static javafx.scene.control.ScrollPane.ScrollBarPolicy.AS_NEEDED;

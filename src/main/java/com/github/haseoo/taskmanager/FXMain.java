@@ -11,12 +11,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
 import static com.github.haseoo.taskmanager.utilities.Constants.APPLICATION_NAME;
 import static com.github.haseoo.taskmanager.utilities.Utilities.getResourceURL;
+import static com.github.haseoo.taskmanager.utilities.Utilities.getStackTrace;
 
+@Slf4j
 public class FXMain extends Application {
     public static void main(String[] args) {
         launch(args);
@@ -25,7 +28,6 @@ public class FXMain extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         var mainWindow = new FXMLLoader(getResourceURL(FxmlFilePaths.MAIN_WINDOW));
-        //mainWindow.setController(new MainWindowController(this, TaskListView.DEFAULT_VALUE));
         Thread.setDefaultUncaughtExceptionHandler(FXMain::handleUncaughtExceptions);
         TaskListService taskListService = new TaskListServiceImpl();
         var fileService = new FileServiceImpl();
@@ -42,6 +44,6 @@ public class FXMain extends Application {
         if (!(throwable instanceof IOException)) {
             //reportProblem(throwable);
         }
-        throwable.printStackTrace();
+        log.error(getStackTrace(throwable));
     }
 }

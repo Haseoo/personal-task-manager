@@ -18,11 +18,6 @@ public class TaskListServiceImpl implements TaskListService {
     }
 
     @Override
-    public void loadList(UUID listId) {
-
-    }
-
-    @Override
     public void loadNewList() {
         taskList = TaskListData.newInstance();
 

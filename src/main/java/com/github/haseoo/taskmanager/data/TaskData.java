@@ -136,16 +136,16 @@ public final class TaskData {
 
     public static TaskData from(TaskTemplateData templateData, SlotData slot) {
         var beginDate = (templateData.isHasDuration()) ? LocalDate.now() : null;
-        var endDate = ((templateData.isHasDuration()))
+        var endDate = templateData.isHasDuration()
                 ? LocalDate.now().plusDays(templateData.getDuration()) : null;
-        var task =  new TaskData(UUID.randomUUID(),
+        var task = new TaskData(UUID.randomUUID(),
                 new SimpleStringProperty(templateData.getTaskName()),
                 new SimpleObjectProperty<>(beginDate),
                 new SimpleObjectProperty<>(endDate),
                 new SimpleStringProperty(),
                 new SimpleObjectProperty<>());
         task.getKeyWords().addAll(templateData.getKeyWords());
-        var subTasks =templateData.getSubTaskNames().stream()
+        var subTasks = templateData.getSubTaskNames().stream()
                 .map(SubTaskData::newInstance)
                 .collect(toList());
         task.getSubTasks().addAll(subTasks);

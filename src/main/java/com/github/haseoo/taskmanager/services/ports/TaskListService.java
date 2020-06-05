@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TaskListService {
-    void loadList(UUID listId);
-
     void loadNewList();
 
     TaskList prepareModels();

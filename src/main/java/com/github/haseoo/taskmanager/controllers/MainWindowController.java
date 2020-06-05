@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
@@ -17,6 +18,7 @@ import static com.github.haseoo.taskmanager.utilities.Constants.*;
 import static com.github.haseoo.taskmanager.utilities.DialogStrings.*;
 import static com.github.haseoo.taskmanager.utilities.Utilities.*;
 
+@Slf4j
 @RequiredArgsConstructor
 public class MainWindowController {
     private final JFXServiceImpl jfxService;
@@ -54,7 +56,7 @@ public class MainWindowController {
                 jfxService.getCurrentTaskList().bindName(taskListTitle.textProperty());
                 fileService.setSavedOutput(file);
             } catch (Exception | AssertionError e) {
-                e.printStackTrace();
+                log.error(getStackTrace(e));
                 showOpeningError();
             }
         }
@@ -68,7 +70,7 @@ public class MainWindowController {
                 showSavedInfo();
             } catch (IOException e) {
                 showSavingError();
-                e.printStackTrace();
+                log.error(getStackTrace(e));
             }
         } else {
             onExport();
@@ -88,7 +90,7 @@ public class MainWindowController {
                 showSavedInfo();
             } catch (IOException e) {
                 showSavingError();
-                e.printStackTrace();
+                log.error(getStackTrace(e));
             }
         }
     }
