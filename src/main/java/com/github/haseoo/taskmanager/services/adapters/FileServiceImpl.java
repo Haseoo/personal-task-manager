@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Objects;
 
 public class FileServiceImpl {
@@ -20,6 +21,7 @@ public class FileServiceImpl {
 
     public void saveFileAs(File output, TaskList data) throws IOException {
         var mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
         mapper.writer(new DefaultPrettyPrinter()).writeValue(output, data);
         savedOutput = output;
     }
