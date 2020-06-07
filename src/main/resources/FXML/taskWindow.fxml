@@ -146,7 +146,7 @@
                         </ProgressBar>
                         <VBox GridPane.rowIndex="1">
                             <children>
-                                <Label text="Key words (semiclon separated)"/>
+                                <Label text="Key words (semicolon separated)"/>
                                 <TextField fx:id="keyWordsInput"/>
                             </children>
                             <opaqueInsets>
