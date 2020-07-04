@@ -14,3 +14,6 @@ You can download built jars [here](https://onedrive.live.com/embed?cid=4C1A480B4
 
 ## User manual
 The user manual is available [here](http://dawidhomeserver.ddns.net/ptm/manual/).
+
+## Credits:
+All credits to icon used in this project can be found [here](https://github.com/Haseoo/personal-task-manager/blob/master/src/main/resources/FXML/icons/credits.txt).
